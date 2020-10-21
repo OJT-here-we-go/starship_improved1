@@ -5,6 +5,7 @@ import com.games.pieces.*;
 //import com.games.pieces.Player;
 //import com.games.pieces.Starship;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -35,7 +36,7 @@ public class Game {
     TextParser parser;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
-    private Rectangle gameScreenRec;
+    //private Rectangle gameScreenRec;
     private GameArea gameArea;
     private boolean isRunning;
     private static final int mapWidth = 100;
@@ -93,8 +94,24 @@ public class Game {
     }
 
 //  Business Methods
+
+
+    //init the HUD as a panel that can be added to stuff
+//    public JPanel hudInit() {
+//        JPanel hudDisplay = new JPanel();
+//        hudDisplay.setBounds(100, 100, 600, 150);
+//
+//        JLabel titleLabel = new JLabel("Current Planet");
+//
+//
+//
+//    }
+
+
+
     public void begin(int screenWidth, int screenHeight) throws InterruptedException {
         player1 = new Player('@', Color.red, 5, 14);
+        //this is where they set positions for all the planets... hmmm
         earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.blue, 'E');
         moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm');
         venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.magenta, 'V');
@@ -115,9 +132,18 @@ public class Game {
         hud = new HUD(starship, player1, output);
         level1 = new Level();
         parser = new TextParser();
-        space = drawGame();
+        //space = drawGame();
         System.out.println(player1.getName());
+
+
+
+        //this starts the space game area jframe
         gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), new Rectangle(mapWidth, mapHeight));
+        HUDGui hudGui = new HUDGui(gameArea,starship,player1,output);
+        //if we wanted a title screen or something like that, we should put it after the game area get initialized (so like, here)
+
+
+
 
         play(player1, planets, asteroids, aliens, starship, hud, level1);
     }
@@ -126,25 +152,25 @@ public class Game {
 //        output.introNarrative(player);
         String initialThoughts = "Welcome to Starship.";
         hud.prompt1(initialThoughts);
-        run();
-        while(starship.getFuel() > 0 && starship.getHealth() > 0){
-            this.hud.display(starship.getCurrentLocation());
-            // keep accepting commands from player and playing
-            System.out.print("|| Input: ");
-            Scanner input = new Scanner(System.in);
-            String command = input.nextLine();
-            parser.gamePlayScanner(command, player, planets, asteroids, aliens, starship, hud, space);
-        }
-         // else, loop breaks, ask the player if they'd like to start over
-        if(starship.getFuel() <= 0 || starship.getHealth() <= 0) {
-            if(starship.getCurrentLocation() == mars){
-                System.out.println("You made it to Mars! Congratulations.");
-            }
-            else{
-                System.out.println("Game over. Enter \'y\' to play again or \'n\' to exit.");
-            }
-            restartOrClose();
-        }
+        run(); //This is the problem, run gets executed forever, until window is closed... code below never gets executed
+//        while(starship.getFuel() > 0 && starship.getHealth() > 0){
+//            this.hud.display(starship.getCurrentLocation());
+//            // keep accepting commands from player and playing
+//            System.out.print("|| Input: ");
+//            Scanner input = new Scanner(System.in);
+//            String command = input.nextLine();
+//            parser.gamePlayScanner(command, player, planets, asteroids, aliens, starship, hud, space);
+//        }
+//         // else, loop breaks, ask the player if they'd like to start over
+//        if(starship.getFuel() <= 0 || starship.getHealth() <= 0) {
+//            if(starship.getCurrentLocation() == mars){
+//                System.out.println("You made it to Mars! Congratulations.");
+//            }
+//            else{
+//                System.out.println("Game over. Enter \'y\' to play again or \'n\' to exit.");
+//            }
+//            restartOrClose();
+//        }
     }
 
     public void restart() throws InterruptedException{
@@ -229,6 +255,7 @@ public class Game {
         return aliens;
     }
     // handle user input, such as KeyEvents
+    //THIS IS THE MEAT AND POTATOES
     public void processInput() {
         InputEvent event = gameArea.getNextInput();
         if (event instanceof KeyEvent) {
@@ -263,6 +290,8 @@ public class Game {
         gameArea.refresh();
     }
     // load the JFrame window
+
+    // this can be put in the main to load windows on same process rather than what first group did
     public void run() {
         isRunning = true;
 

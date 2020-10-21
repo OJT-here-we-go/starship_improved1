@@ -11,5 +11,14 @@
     <orderEntry type="library" name="junit:junit:4.13" level="project" />
     <orderEntry type="library" name="asciiPanel" level="project" />
     <orderEntry type="library" name="asciiPanel1" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/openjfx-11.0.2_windows-x64_bin-sdk.zip!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

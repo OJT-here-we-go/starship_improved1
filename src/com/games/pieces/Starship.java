@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Starship {
     private ArrayList<String> inventory = new ArrayList<>();
-    private static int health = 100;
-    private static int fuel = 100;
-    private static int damage = 20;
-    private static int fuelUsed = 10;
+    private int health = 100;
+    private int fuel = 100;
+    private int damage = 20;
+    private int fuelUsed = 10;
     public boolean inSpace = false;
-    public static Planet currentLocation;
-    public static String currentAsteroids;
-    private static boolean playerCanUseShield = false;
+    public Planet currentLocation;
+    public String currentAsteroids;
+    private boolean playerCanUseShield = false;
     public int xPos, yPos;
 
     public Starship(GameArea gameArea, Planet currentLocation, int xPos, int yPos){
@@ -76,7 +76,7 @@ public class Starship {
         this.health = health;
     }
 
-    public static int getFuel() {
+    public int getFuel() {
         return fuel;
     }
 
@@ -84,7 +84,7 @@ public class Starship {
         this.fuel = fuel;
     }
 
-    public static int getDamage(){
+    public int getDamage(){
         return damage;
     }
 
@@ -108,12 +108,12 @@ public class Starship {
         this.inventory = inventory;
     }
 
-    public static boolean getPlayerCanUseShield() {
+    public boolean getPlayerCanUseShield() {
         return playerCanUseShield;
     }
 
-    public static void setPlayerCanUseShield(boolean playerCanUseShield) {
-        Starship.playerCanUseShield = playerCanUseShield;
+    public void setPlayerCanUseShield(boolean playerCanUseShield) {
+        this.playerCanUseShield = playerCanUseShield;
     }
 
 }

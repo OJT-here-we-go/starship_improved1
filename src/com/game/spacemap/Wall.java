@@ -1,7 +1,7 @@
 package com.game.spacemap;
 
-import javafx.scene.shape.Circle;
-import org.w3c.dom.css.Rect;
+//import javafx.scene.shape.Circle;
+//import org.w3c.dom.css.Rect;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
