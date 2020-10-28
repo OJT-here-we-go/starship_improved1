@@ -368,6 +368,8 @@ public class Game {
     // this can be put in the main to load windows on same process rather than what first group did
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
+        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
+        BackgroundMusic.playBGM(filepath); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();
