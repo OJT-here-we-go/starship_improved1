@@ -1,0 +1,308 @@
+Index: src/com/games/game/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.games.game;\r\n\r\nimport com.games.pieces.*;\r\n//import com.games.pieces.Planet;\r\n//import com.games.pieces.Player;\r\n//import com.games.pieces.Starship;\r\n\r\nimport javax.sound.sampled.LineUnavailableException;\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.InputEvent;\r\nimport java.awt.event.KeyEvent;\r\nimport java.awt.event.MouseEvent;\r\n\r\n\r\nimport java.io.FileNotFoundException;\r\nimport java.util.*;\r\nimport java.util.Random;\r\n\r\npublic class Game {\r\n\r\n// Member Variables\r\n    Player player1;\r\n    Planet earth;\r\n    Planet moon;\r\n    Planet venus;\r\n    Planet mercury;\r\n    Planet mars;\r\n    Planet obstacle1;\r\n    Planet obstacle2;\r\n    ArrayList<Planet> planets = new ArrayList<>();\r\n    ArrayList<Asteroid> asteroids;\r\n    ArrayList<Alien> aliens;\r\n    Starship starship;\r\n    HUDGui hud;\r\n    OutputGui output;\r\n    Level level1;\r\n    TextParser parser;\r\n    public static HashMap<String, HashMap<String, String>> space = new HashMap<>();\r\n\r\n    //private Rectangle gameScreenRec;\r\n    public GameArea gameArea;\r\n    private boolean isRunning;\r\n    private static final int mapWidth = 100;\r\n    private static final int mapHeight = 100;\r\n    private int framesPerSecond = 60;\r\n    private int timePerLoop = 1000000000 / framesPerSecond;\r\n\r\n    //private static final int HEIGHT = 10;\r\n//   private static final int WIDTH = 10;\r\n\r\n\r\n    public HashMap<String, HashMap<String, String>> drawGame() {\r\n// Earths neighbors\r\n        HashMap<String, String> earthNeighbors = new HashMap<>();\r\n\r\n        earthNeighbors.put(\"right\", \"Moon\");\r\n        space.put(\"Earth\", earthNeighbors);\r\n// Moon neighbors\r\n        HashMap<String, String> moonNeighbors = new HashMap<>();\r\n\r\n        moonNeighbors.put(\"left\", \"Earth\");\r\n        moonNeighbors.put(\"up\", \"Venus\");\r\n        space.put(\"Moon\", moonNeighbors);\r\n// Venus\r\n        HashMap<String, String> venusNeighbors = new HashMap<>();\r\n\r\n        venusNeighbors.put(\"down\", \"Moon\");\r\n        venusNeighbors.put(\"up\", \"Mercury\");\r\n        space.put(\"Venus\", venusNeighbors);\r\n// Mercury neighbors\r\n        HashMap<String, String> mercuryNeighbors = new HashMap<>();\r\n\r\n        mercuryNeighbors.put(\"down\", \"Venus\");\r\n        mercuryNeighbors.put(\"left\", \"Asteroids1\");\r\n        space.put(\"Mercury\", mercuryNeighbors);\r\n// Asteroids1 neighbors\r\n        HashMap<String, String> asteroid1Neighbors = new HashMap<>();\r\n\r\n        asteroid1Neighbors.put(\"right\", \"Mercury\");\r\n        asteroid1Neighbors.put(\"up\", \"Aliens1\");\r\n        space.put(\"Asteroids1\", asteroid1Neighbors);\r\n// aliens\r\n        HashMap<String, String> alien1Neighbors = new HashMap<>();\r\n\r\n        alien1Neighbors.put(\"down\", \"Asteroids1\");\r\n        alien1Neighbors.put(\"up\", \"Mars\");\r\n        space.put(\"Aliens1\", alien1Neighbors);\r\n// Mars\r\n        HashMap<String, String> marsNeighbors = new HashMap<>();\r\n\r\n        marsNeighbors.put(\"down\", \"Aliens1\");\r\n        space.put(\"Mars\", marsNeighbors);\r\n\r\n        return space;\r\n    }\r\n\r\n//  Business Methods\r\n\r\n\r\n    //init the HUD as a panel that can be added to stuff\r\n//    public JPanel hudInit() {\r\n//        JPanel hudDisplay = new JPanel();\r\n//        hudDisplay.setBounds(100, 100, 600, 150);\r\n//\r\n//        JLabel titleLabel = new JLabel(\"Current Planet\");\r\n//\r\n//\r\n//\r\n//    }\r\n\r\n\r\n\r\n    public void begin(int screenWidth, int screenHeight) throws InterruptedException, FileNotFoundException, LineUnavailableException {\r\n        player1 = new Player('@', Color.cyan, 8, 16);\r\n        //this is where they set positions for all the planets... hmmm\r\n        earth = new Planet(\"Earth\", new ArrayList<>(Arrays.asList(\"water\", \"food\")), 10, 16, Color.blue, 'E');\r\n        moon = new Planet(\"Moon\", new ArrayList<>(Arrays.asList(\"fuel\", \"Elon Musk\", \"weapon\")), 13, 11, Color.LIGHT_GRAY, 'm');\r\n        venus = new Planet(\"Venus\", new ArrayList<>(Arrays.asList(\"fuel\", \"scrap metal\")), 6, 20, Color.magenta, 'V');\r\n        mercury = new Planet(\"Mercury\", new ArrayList<>(Arrays.asList(\"super laser\", \"shield\")), 4, 22, Color.yellow, 'M');\r\n        obstacle1 = new Planet(\"Asteroids1\", new ArrayList<>(Arrays.asList(\"speed booster\")));\r\n        obstacle2 = new Planet(\"Aliens1\", new ArrayList<>(Arrays.asList(\"bb gun\")));\r\n        mars = new Planet(\"Mars\", new ArrayList<>(), 70, 3, Color.orange, 'M');\r\n        planets.add(earth);\r\n        planets.add(moon);\r\n        planets.add(venus);\r\n        planets.add(mercury);\r\n        planets.add(mars);\r\n        planets.add(obstacle1);\r\n        planets.add(obstacle2);\r\n        asteroids = createAsteroids(3, \"large\");\r\n        aliens = createAliens(3);\r\n        starship = new Starship(gameArea, earth, 8, 16);\r\n        level1 = new Level();\r\n        parser = new TextParser();\r\n\r\n        //\r\n        hud = new HUDGui(starship,player1);\r\n        output = new OutputGui();\r\n        //space = drawGame();\r\n        //System.out.println(player1.getName());\r\n\r\n\r\n\r\n        //this starts the space game area jframe\r\n        gameArea = new GameArea(new Rectangle(screenWidth, screenHeight),this.starship,this.player1,this.hud,this.output);\r\n//        gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), new Rectangle(mapWidth, mapHeight));\r\n//        OutputGui outputGui = new OutputGui(gameArea);\r\n//        HUDGui hudGui = new HUDGui(gameArea,starship,player1);\r\n\r\n        //if we wanted a title screen or something like that, we should put it after the game area get initialized (so like, here)\r\n        new LandingPage();\r\n\r\n\r\n\r\n        play(player1, planets, asteroids, aliens, starship, level1);\r\n    }\r\n\r\n    public void play(Player player, ArrayList<Planet> planets, ArrayList<Asteroid> asteroids, ArrayList<Alien> aliens, Starship starship, Level level) throws InterruptedException, FileNotFoundException, LineUnavailableException {\r\n//        output.introNarrative(player);\r\n        String initialThoughts = \"Welcome to Starship.\";\r\n        hud.prompt1(initialThoughts);\r\n        run(); //This is the problem, run gets executed forever, until window is closed... code below never gets executed\r\n//        while(starship.getFuel() > 0 && starship.getHealth() > 0){\r\n//            this.hud.display(starship.getCurrentLocation());\r\n//            // keep accepting commands from player and playing\r\n//            System.out.print(\"|| Input: \");\r\n//            Scanner input = new Scanner(System.in);\r\n//            String command = input.nextLine();\r\n//            parser.gamePlayScanner(command, player, planets, asteroids, aliens, starship, hud, space);\r\n//        }\r\n//         // else, loop breaks, ask the player if they'd like to start over\r\n//        if(starship.getFuel() <= 0 || starship.getHealth() <= 0) {\r\n//            if(starship.getCurrentLocation() == mars){\r\n//                System.out.println(\"You made it to Mars! Congratulations.\");\r\n//            }\r\n//            else{\r\n//                System.out.println(\"Game over. Enter \\'y\\' to play again or \\'n\\' to exit.\");\r\n//            }\r\n//            restartOrClose();\r\n//        }\r\n    }\r\n\r\n    public void restart() throws InterruptedException, FileNotFoundException, LineUnavailableException {\r\n        player1.clearInventory();\r\n        starship.setHealth(starship.getHealth() + (100 - starship.getHealth()));\r\n        starship.setFuel(starship.getFuel() + (100 - starship.getFuel()));\r\n        starship.setCurrentLocation(earth);\r\n        parser = new TextParser();\r\n        output = new OutputGui();\r\n        hud = new HUDGui(starship, player1);\r\n        play(player1, planets, asteroids, aliens, starship, level1);\r\n    }\r\n\r\n    public void restartOrClose() throws InterruptedException, FileNotFoundException, LineUnavailableException {\r\n        if(startOverPrompt()){\r\n            this.restart();\r\n        }\r\n        else{\r\n            System.exit(0);\r\n        }\r\n    }\r\n    public boolean startOverPrompt(){\r\n        Scanner input = new Scanner(System.in);\r\n        String command = input.nextLine().toLowerCase();\r\n        while(!command.equals(\"y\") && !command.equals(\"n\")){\r\n            System.out.println(\"Invalid choice. Enter y or n. \\n Do you want to try again?\");\r\n            command = input.nextLine().toLowerCase();\r\n        }\r\n        if(command.equals(\"y\")){\r\n            System.out.println(\"You entered play again\");\r\n            return true;\r\n        }\r\n        else {\r\n            System.out.println(\"Game exiting.\");\r\n            return false;\r\n        }\r\n    }\r\n    public ArrayList<Asteroid> createAsteroids(int numOfRocks, String size){\r\n        ArrayList<Asteroid> asteroids = new ArrayList<>();\r\n        for(int i = 0; i < numOfRocks; i++){\r\n            String position = \"left\";\r\n            // randomly pick a position i.e. \"left\", \"down\"\r\n            // TODO: give the player more or less options for dodging to make difficulty variable\r\n            // large - player has 25% chance of dodging. options: up, down, left, right\r\n            // medium - player has 33% chance of dodging. options: up, left, right\r\n            // small - player has 50% chance of dodging. options: left, right\r\n            Random rand = new Random();\r\n            int random = rand.nextInt(12);\r\n            if(random < 6 && random % 2 == 0) {\r\n                position = \"right\";\r\n            } else if (random < 6 && random % 2 != 0) {\r\n                position = \"left\";\r\n            } else if (random >= 6 && random % 2 == 0) {\r\n                position = \"up\";\r\n            } else if (random >= 6 && random % 2 != 0) {\r\n                position = \"down\";\r\n            }\r\n            asteroids.add(new Asteroid(size, position));\r\n        }\r\n        return asteroids;\r\n    }\r\n\r\n    public ArrayList<Alien> createAliens(int numOfAliens){\r\n        ArrayList<Alien> aliens = new ArrayList<>();\r\n        for(int i = 0; i < numOfAliens; i++){\r\n            // randomly pick left or right or up or down\r\n            //for now, i will hard code it to down\r\n            String position = \"left\";\r\n            Random rand = new Random();\r\n            int random = rand.nextInt(12);\r\n            if(random < 6 && random % 2 == 0) {\r\n                position = \"right\";\r\n            } else if (random < 6 && random % 2 != 0) {\r\n                position = \"left\";\r\n            } else if (random >= 6 && random % 2 == 0) {\r\n                position = \"up\";\r\n            } else if (random >= 6 && random % 2 != 0) {\r\n                position = \"down\";\r\n            }\r\n            aliens.add(new Alien(position));\r\n        }\r\n        return aliens;\r\n    }\r\n    // handle user input, such as KeyEvents\r\n    //THIS IS THE MEAT AND POTATOES\r\n    public void processInput() {\r\n        InputEvent event = gameArea.getNextInput();\r\n        if (event instanceof KeyEvent) {\r\n            KeyEvent keyPress = (KeyEvent)event;\r\n            // check if user is pressing the arrow keys\r\n            switch (keyPress.getKeyCode()){\r\n                case KeyEvent.VK_LEFT:\r\n                    starship.move(-1, 0);\r\n                    break;\r\n                case KeyEvent.VK_RIGHT:\r\n                    starship.move(1, 0);\r\n                    break;\r\n                case KeyEvent.VK_UP:\r\n                    starship.move(0, -1);\r\n                    break;\r\n                case KeyEvent.VK_DOWN:\r\n                    starship.move(0, 1);\r\n                    break;\r\n                case KeyEvent.VK_Z:\r\n                    gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());\r\n                    break;\r\n                case KeyEvent.VK_X:\r\n                    starship.pickUp(gameArea, planets);\r\n                    break;\r\n            }\r\n        } else if (event instanceof MouseEvent) {\r\n            // possibly do things if the user clicks the mouse\r\n        }\r\n    }\r\n    public void render() throws FileNotFoundException, LineUnavailableException {\r\n        gameArea.pointCameraAt(starship, starship.getxPos(), starship.getyPos());\r\n        gameArea.refresh();\r\n    }\r\n    // load the JFrame window\r\n\r\n    // this can be put in the main to load windows on same process rather than what first group did\r\n    public void run() throws FileNotFoundException, LineUnavailableException {\r\n        isRunning = true;\r\n\r\n        while(isRunning) {\r\n            long startTime = System.nanoTime();\r\n\r\n            processInput();\r\n            render();\r\n            long endTime = System.nanoTime();\r\n\r\n            long sleepTime = timePerLoop - (endTime-startTime);\r\n\r\n            if (sleepTime > 0) {\r\n                try {\r\n                    Thread.sleep(sleepTime/1000000);\r\n                } catch (InterruptedException e) {\r\n                    // TODO Auto-generated catch block\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/games/game/Game.java	(revision 9d556addba7aa60740a3ea358d8feacb3b7ed259)
++++ src/com/games/game/Game.java	(date 1603897570577)
+@@ -1,5 +1,6 @@
+ package com.games.game;
+ 
++import com.games.maps.MapPanelGenerator;
+ import com.games.pieces.*;
+ //import com.games.pieces.Planet;
+ //import com.games.pieces.Player;
+@@ -19,7 +20,7 @@
+ 
+ public class Game {
+ 
+-// Member Variables
++    // Member Variables
+     Player player1;
+     Planet earth;
+     Planet moon;
+@@ -36,9 +37,11 @@
+     OutputGui output;
+     Level level1;
+     TextParser parser;
++    private JFrame parentWindow;
+     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
+ 
+     //private Rectangle gameScreenRec;
++    public MapPanelGenerator currentPanel;
+     public GameArea gameArea;
+     private boolean isRunning;
+     private static final int mapWidth = 100;
+@@ -48,7 +51,10 @@
+ 
+     //private static final int HEIGHT = 10;
+ //   private static final int WIDTH = 10;
+-
++    public Game(JFrame parentWindow) {
++        this.timePerLoop = 1000000000 / this.framesPerSecond;
++        this.parentWindow = parentWindow;
++    }
+ 
+     public HashMap<String, HashMap<String, String>> drawGame() {
+ // Earths neighbors
+@@ -112,15 +118,17 @@
+ 
+ 
+     public void begin(int screenWidth, int screenHeight) throws InterruptedException, FileNotFoundException, LineUnavailableException {
++
+         player1 = new Player('@', Color.cyan, 8, 16);
+-        //this is where they set positions for all the planets... hmmm
+-        earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.blue, 'E');
+-        moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm');
+-        venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.magenta, 'V');
+-        mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M');
+-        obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")));
+-        obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")));
+-        mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M');
++        starship = new Starship(gameArea, earth, 8, 16);
++//        this is where they set positions for all the planets... hmmm but its not really used?
++        earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.blue, 'E',starship);
++        moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
++        venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.magenta, 'V',starship);
++        mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
++        obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),starship);
++        obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
++        mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship);
+         planets.add(earth);
+         planets.add(moon);
+         planets.add(venus);
+@@ -130,7 +138,7 @@
+         planets.add(obstacle2);
+         asteroids = createAsteroids(3, "large");
+         aliens = createAliens(3);
+-        starship = new Starship(gameArea, earth, 8, 16);
++
+         level1 = new Level();
+         parser = new TextParser();
+ 
+@@ -139,17 +147,54 @@
+         output = new OutputGui();
+         //space = drawGame();
+         //System.out.println(player1.getName());
++        this.parentWindow = new JFrame();
++        this.parentWindow.setBackground(Color.BLUE);
++        this.parentWindow.setLayout(new BorderLayout());
++        this.parentWindow.setSize(new Dimension(800, 545));
++        this.parentWindow.setLocationRelativeTo((Component)null);
++        this.parentWindow.setTitle("Starship Game");
++        this.parentWindow.setDefaultCloseOperation(3);
++        JFrame menu = new JFrame();
++        JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
++        JButton quitButton = new JButton("Quit Game");
++        playButton.setPreferredSize(new Dimension(100, 80));
++        quitButton.setSize(new Dimension(60, 60));
++        playButton.setContentAreaFilled(false);
++        playButton.setBorderPainted(false);
++        playButton.setActionCommand("play");
++        quitButton.setActionCommand("quit");
++        menu.setLayout(new BorderLayout());
++        menu.add(playButton, "Center");
++        menu.add(quitButton, "Last");
++        menu.setLocationRelativeTo((Component)null);
++        menu.setSize(new Dimension(825, 650));
++        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
++        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), "Center");
++        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), "After");
++        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
++        playButton.addActionListener((e) -> {
++            if (e.getActionCommand().equals("play")) {
++                menu.setVisible(false);
++                this.parentWindow.setVisible(true);
++            } else {
++                menu.setVisible(true);
++            }
+ 
++        });
++        menu.setVisible(true);
++        this.parentWindow.revalidate();
++        this.parentWindow.repaint();
+ 
+ 
+         //this starts the space game area jframe
+         gameArea = new GameArea(new Rectangle(screenWidth, screenHeight),this.starship,this.player1,this.hud,this.output);
++
+ //        gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), new Rectangle(mapWidth, mapHeight));
+ //        OutputGui outputGui = new OutputGui(gameArea);
+ //        HUDGui hudGui = new HUDGui(gameArea,starship,player1);
+ 
+         //if we wanted a title screen or something like that, we should put it after the game area get initialized (so like, here)
+-        new LandingPage();
++
+ 
+ 
+ 
+@@ -286,17 +331,30 @@
+                     gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());
+                     break;
+                 case KeyEvent.VK_X:
+-                    starship.pickUp(gameArea, planets);
++                    if (starship.pickUp(gameArea, planets)) {
++                        gameArea.getContentPane().remove(gameArea.getAsciiPanel());
++                        currentPanel = new MapPanelGenerator(starship);
++                        gameArea.add(currentPanel);
++                        gameArea.revalidate();
++                        gameArea.repaint();
++                    }
+                     break;
+             }
+         } else if (event instanceof MouseEvent) {
+             // possibly do things if the user clicks the mouse
+         }
+     }
+-    public void render() throws FileNotFoundException, LineUnavailableException {
++    public void renderGameArea() throws FileNotFoundException, LineUnavailableException {
+         gameArea.pointCameraAt(starship, starship.getxPos(), starship.getyPos());
+         gameArea.refresh();
+     }
++
++
++    public void renderPlanetMaps(){
++        starship.getCurrentLocation().posUpdate();
++        currentPanel.repaint();
++    }
++
+     // load the JFrame window
+ 
+     // this can be put in the main to load windows on same process rather than what first group did
+@@ -307,7 +365,7 @@
+             long startTime = System.nanoTime();
+ 
+             processInput();
+-            render();
++            renderGameArea();
+             long endTime = System.nanoTime();
+ 
+             long sleepTime = timePerLoop - (endTime-startTime);
+Index: src/com/games/client/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.games.client;\r\n\r\nimport com.games.game.Game;\r\nimport com.games.game.LandingPage;\r\n\r\n//import com.games.maps.Earth;\r\n//import com.games.maps.Moon;\r\n\r\nimport javax.sound.sampled.LineUnavailableException;\r\nimport javax.swing.*;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) throws InterruptedException, FileNotFoundException, LineUnavailableException {\r\n//        start the game here\r\n\r\n        System.out.println(\"Welcome to Starship\");\r\n        //LandingPage menu = new LandingPage();\r\n        Game game = new Game();\r\n        game.begin(80,24);\r\n//        Earth.draw();\r\n//        Moon.draw();\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/games/client/Main.java	(revision 9d556addba7aa60740a3ea358d8feacb3b7ed259)
++++ src/com/games/client/Main.java	(date 1603897862605)
+@@ -18,7 +18,7 @@
+ 
+         System.out.println("Welcome to Starship");
+         //LandingPage menu = new LandingPage();
+-        Game game = new Game();
++        Game game = new Game(new JFrame());
+         game.begin(80,24);
+ //        Earth.draw();
+ //        Moon.draw();
+Index: src/com/games/game/LandingPage.java
+===================================================================
+--- src/com/games/game/LandingPage.java	(revision 9d556addba7aa60740a3ea358d8feacb3b7ed259)
++++ src/com/games/game/LandingPage.java	(revision 9d556addba7aa60740a3ea358d8feacb3b7ed259)
+@@ -1,102 +0,0 @@
+-package com.games.game;
+-
+-
+-import com.games.pieces.GameArea;
+-
+-import java.awt.*;
+-import java.awt.event.ActionEvent;
+-import java.awt.event.ActionListener;
+-import java.io.FileNotFoundException;
+-
+-import javax.sound.sampled.LineUnavailableException;
+-import javax.swing.ImageIcon;
+-import javax.swing.JButton;
+-import javax.swing.JFrame;
+-import javax.swing.JLabel;
+-import javax.swing.border.LineBorder;
+-
+-public class LandingPage extends JFrame implements ActionListener {
+-
+-    //private Game game = new Game();
+-     //A JButton that checks if the user wants to play.
+-    private JButton playButton;
+-    //A JButton that checks if the user wants to quit.
+-    private JButton quitButton;
+-    //A JLabel that contains the menu background image.
+-    private JLabel background;
+-
+-    //Creates and displays the menu
+-
+-    public LandingPage() {
+-        super("Starship Landing Page");
+-        createMenuFrame();
+-
+-    }
+-
+-
+-     //Creates the Menu JFrame.
+-
+-    private void createMenuFrame() {
+-        setPreferredSize(new Dimension(700, 500));
+-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+-
+-        // Background image
+-        background = new JLabel(new ImageIcon("src/images/Starship.png"));
+-        background.setSize(new Dimension(700, 500));
+-        setContentPane(background);
+-        setLayout(new GridBagLayout());
+-
+-        // GridBagConstraints
+-        GridBagConstraints c = new GridBagConstraints();
+-        c.insets = new Insets(15, 40, 15, 40);
+-        c.gridwidth = GridBagConstraints.REMAINDER;
+-
+-        //Buttons
+-        playButton = new JButton(new ImageIcon("src/images/StarshipPLAY.png"));
+-        playButton.setPreferredSize(new Dimension(300, 80));
+-        playButton.setContentAreaFilled(false);
+-        playButton.setBorderPainted(false);
+-
+-        quitButton = new JButton("Quit Game");
+-
+-
+-        playButton.addActionListener(this);
+-        playButton.setActionCommand("play");
+-        quitButton.addActionListener(this);
+-        quitButton.setActionCommand("quit");
+-
+-        add(playButton, c);
+-        add(quitButton, c);
+-
+-        pack();
+-        setLocationRelativeTo(null);
+-        setVisible(true);
+-    }
+-
+-    //This method is called every time an action is
+-     //performed. Used to check for button presses.
+-
+-    @Override
+-    //close landing page
+-    public void actionPerformed(ActionEvent e) {
+-        if (e.getActionCommand() == "play") {
+-            //System.out.println("lets play");
+-            setVisible(false);
+-            dispose();
+-//
+-////                game.gameArea.revalidate();
+-////                game.gameArea.repaint();
+-//            } catch (InterruptedException interruptedException) {
+-//                interruptedException.printStackTrace();
+-//            } catch (FileNotFoundException fileNotFoundException) {
+-//                fileNotFoundException.printStackTrace();
+-//            } catch (LineUnavailableException lineUnavailableException) {
+-//                lineUnavailableException.printStackTrace();
+-//            }
+-        } else {
+-            //System.out.println("it's not working");
+-            System.exit(0);
+-
+-        }
+-    }
+-}
+\ No newline at end of file

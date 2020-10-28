@@ -1,0 +1,449 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]" date="1603897515159" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 10/28/2020 10:05 AM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/GamePanel$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GamePanel$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/GameArea.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/GameArea.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameArea.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Asteroid.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Asteroid.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Starship.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/HUDGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUDGui.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Output.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Output.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/MainTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/MainTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Starship.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Starship.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Alien.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Alien.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Earth.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Earth.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/client/FileReader.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/client/FileReader.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/FileReader.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/images/Starship.png" />
+    <option name="AFTER_PATH" value="out/production/starship/images/Starship.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/HUDGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUDGui1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/HUDGui.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/game/HUDGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUDGui2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Output.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Output1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Obstacle1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Obstacle1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Planet.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Planet.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Moon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Moon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Wall.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Wall.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/KeyChecker.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/KeyChecker.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Starship.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Game.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/GamePanel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GamePanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/TextParser.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/TextParser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/TextParserTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/TextParserTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/HUDGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUDGui3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/GameArea.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameArea1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/CustomOutputStream.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/CustomOutputStream.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/client/Main.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/client/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Main1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/MainFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/MainFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Starship.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Wall.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Wall1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/GameArea.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameArea2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/SpaceMap.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/SpaceMap.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Player.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/MainFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/MainFrame1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Asteroid.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Asteroid1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Planet.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Planet1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/HUD.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUD.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Starship1.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Earth.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Earth1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Rocket.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Rocket.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Alien.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Alien1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Sound.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Level.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Level.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/VolumeSlider$VolumeChangeAction.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/VolumeSlider$VolumeChangeAction.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/VolumeSlider$VolumeChangeAction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Venus.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Venus.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/GamePanel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GamePanel1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/CustomOutputStream.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/CustomOutputStream1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/maps/Tile.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/maps/Tile.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Tile.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/LandingPage.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/GameTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Starship.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship2.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Sound1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Moon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Moon1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_9_38_AM_[Default_Changelist]/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Game1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Weapon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Weapon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Obstacle1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Obstacle11.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Main2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Starship.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship3.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Game2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/MainTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/MainTest1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/TextParser.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/TextParser1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Player1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/OutputGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/OutputGui.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/GamePanel$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GamePanel$11.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Game3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Sound.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Sound2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/KeyChecker.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/KeyChecker1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Starship.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Starship4.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Checkout_at_10_27_2020_5_31_PM_[Default_Changelist]/Planet.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Planet2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/maps/MapPanelGenerator.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/maps/MapPanelGenerator.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/MapPanelGenerator.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/GameTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameTest1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/StarshipTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/StarshipTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Planet.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Planet.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Planet3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/GameArea.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/GameArea3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/SpaceMap.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/SpaceMap1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Rocket.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Rocket1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Level.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Level1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Venus.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Venus1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/Weapon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Weapon1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/VolumeSlider.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/VolumeSlider.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/VolumeSlider.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/OutputGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/OutputGui1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/StarshipTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/StarshipTest1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Sound3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/Game.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/game/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/Game4.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]/TextParserTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/TextParserTest1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value=".idea/shelf/Uncommitted_changes_before_Merge_at_10_27_2020_5_10_PM_[Default_Changelist]1/HUD.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_05_AM_[Default_Changelist]/HUD1.class" />
+  </binary>
+</changelist>
