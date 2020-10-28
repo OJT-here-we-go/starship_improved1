@@ -154,7 +154,6 @@ public class Game {
 //        HUDGui hudGui = new HUDGui(gameArea,starship,player1);
 
         //if we wanted a title screen or something like that, we should put it after the game area get initialized (so like, here)
-       //new LandingPage(); Broken in DevGame
 
 
 
