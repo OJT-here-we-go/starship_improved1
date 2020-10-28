@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Game {
 
-// Member Variables
+    // Member Variables
     Player player1;
     Planet earth;
     Planet moon;
@@ -37,6 +37,7 @@ public class Game {
     OutputGui output;
     Level level1;
     TextParser parser;
+    private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
     //private Rectangle gameScreenRec;
@@ -50,7 +51,10 @@ public class Game {
 
     //private static final int HEIGHT = 10;
 //   private static final int WIDTH = 10;
-
+    public Game() {
+        this.timePerLoop = 1000000000 / this.framesPerSecond;
+        this.parentWindow = new JFrame();
+    }
 
     public HashMap<String, HashMap<String, String>> drawGame() {
 // Earths neighbors
@@ -115,39 +119,80 @@ public class Game {
 
     public void begin(int screenWidth, int screenHeight) throws InterruptedException, FileNotFoundException, LineUnavailableException {
 
-        player1 = new Player('@', Color.cyan, 8, 16);
-        starship = new Starship(gameArea, earth, 8, 16);
+        this.player1 = new Player('@', Color.cyan, 8, 16);
+        this.starship = new Starship(gameArea, earth, 8, 16);
 //        this is where they set positions for all the planets... hmmm but its not really used?
-        earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.blue, 'E',starship);
-        moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
-        venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.magenta, 'V',starship);
-        mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
-        obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),starship);
-        obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
-        mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship);
-        planets.add(earth);
-        planets.add(moon);
-        planets.add(venus);
-        planets.add(mercury);
-        planets.add(mars);
-        planets.add(obstacle1);
-        planets.add(obstacle2);
-        asteroids = createAsteroids(3, "large");
-        aliens = createAliens(3);
+        this.earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16,
+                Color.blue, 'E',starship);
+        this.moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
+        this.venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6
+                , 20, Color.magenta, 'V',starship);
+        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
+        this.obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),
+                starship);
+        this.obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
+        this.mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship);
+        this.planets.add(earth);
+        this.planets.add(moon);
+        this.planets.add(venus);
+        this.planets.add(mercury);
+        this.planets.add(mars);
+        this.planets.add(obstacle1);
+        this.planets.add(obstacle2);
+        this.asteroids = createAsteroids(3, "large");
+        this.aliens = createAliens(3);
 
-        level1 = new Level();
-        parser = new TextParser();
+        this.level1 = new Level();
+        this.parser = new TextParser();
 
         //
-        hud = new HUDGui(starship,player1);
-        output = new OutputGui();
+        this.hud = new HUDGui(starship,player1);
+        this.output = new OutputGui();
         //space = drawGame();
         //System.out.println(player1.getName());
+//        this.parentWindow = new JFrame();
+//        this.parentWindow.setBackground(Color.BLUE);
+//        this.parentWindow.setLayout(new BorderLayout());
+//        this.parentWindow.setSize(new Dimension(800, 545));
+//        this.parentWindow.setLocationRelativeTo((Component)null);
+//        this.parentWindow.setTitle("Starship Game");
+//        this.parentWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame menu = new JFrame();
+        JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
+        JButton quitButton = new JButton("Quit Game");
+        playButton.setPreferredSize(new Dimension(100, 80));
+        quitButton.setSize(new Dimension(60, 60));
+        playButton.setContentAreaFilled(false);
+        playButton.setBorderPainted(false);
+        playButton.setActionCommand("play");
+        quitButton.setActionCommand("quit");
+        menu.setLayout(new BorderLayout());
+        menu.add(playButton, "Center");
+        menu.add(quitButton, "Last");
+        menu.setLocationRelativeTo(null);
+        menu.setSize(new Dimension(825, 650));
+        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
+//        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
+//        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
+//        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
+        playButton.addActionListener((e) -> {
+            if (e.getActionCommand().equals("play")) {
+                menu.setVisible(false);
+                this.gameArea.setVisible(true);
+                gameArea.requestFocus();
+            } else {
+                menu.setVisible(true);
+            }
 
+        });
+        menu.setVisible(true);
+        this.parentWindow.revalidate();
+        this.parentWindow.repaint();
 
 
         //this starts the space game area jframe
-        gameArea = new GameArea(new Rectangle(screenWidth, screenHeight),this.starship,this.player1,this.hud,this.output);
+        //gameArea = new GameArea(new Rectangle(screenWidth, screenHeight),this.starship,
+                //this.player1,this.hud,this.output);
 
 //        gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), new Rectangle(mapWidth, mapHeight));
 //        OutputGui outputGui = new OutputGui(gameArea);
@@ -157,14 +202,18 @@ public class Game {
 
 
 
-        play(player1, planets, asteroids, aliens, starship, level1);
+
+        this.play(this.player1, this.planets, this.asteroids, this.aliens, this.starship,
+                this.level1);
     }
 
     public void play(Player player, ArrayList<Planet> planets, ArrayList<Asteroid> asteroids, ArrayList<Alien> aliens, Starship starship, Level level) throws InterruptedException, FileNotFoundException, LineUnavailableException {
 //        output.introNarrative(player);
         String initialThoughts = "Welcome to Starship.";
+        HUDGui var10000 = this.hud;
         hud.prompt1(initialThoughts);
-        run(); //This is the problem, run gets executed forever, until window is closed... code below never gets executed
+        this.run(); //This is the problem, run gets executed forever, until window is closed...
+        // code below never gets executed
 //        while(starship.getFuel() > 0 && starship.getHealth() > 0){
 //            this.hud.display(starship.getCurrentLocation());
 //            // keep accepting commands from player and playing

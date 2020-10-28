@@ -46,9 +46,9 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         super.addKeyListener(this);
         super.addMouseListener(this);
         super.setSize(this.gameScreenRec.width*12, this.gameScreenRec.height*23);
-        super.setVisible(true);
+        super.setVisible(false);
         super.setResizable(false);
-
+        super.setLocationRelativeTo((Component)null);
 
         super.setTitle("Starship");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
