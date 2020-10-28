@@ -206,11 +206,11 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
             if(player1.getxPos() == planet.getX() && player1.getyPos() == planet.getY()) {
                 player1.setCurrentLocation(planet);
                 this.hud.updateMap(planet.getName());
-                player1.setInSpace(false);
+                //player1.setInSpace(false);
                 break;
             } else {
                 this.hud.updateMapSpace();
-                player1.setInSpace(true);
+//                player1.setInSpace(true);
             }
         }
 

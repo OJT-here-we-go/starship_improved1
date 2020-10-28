@@ -15,6 +15,9 @@ public class Planet {
     private Color color;
     private Character symbol;
     private Starship starship;
+    private Tile previousTile = Tile.NOTHING;
+    private Tile nextTile;
+    private int nextX,nextY;
 
     private ArrayList<ArrayList<Tile>> tiles;
 
@@ -293,15 +296,43 @@ public class Planet {
     }
 
     public void posUpdate(){
-        //DELETES
+//        tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos(),previousTile);
+//
+//        previousTile = starship.getCurrentLocation().getTile(starship.getPlanetXPos(), starship.getPlanetYPos());
+//        nextX = starship.getPlanetXPos();
+//        nextY = starship.getPlanetYPos();
+
         for(int i=0;i<this.getHeight();i++) {
             for(int j=0;j<this.getWidth();j++) {
                 if(tiles.get(i).get(j) == Tile.PLAYER)
                     tiles.get(i).set(j, Tile.NOTHING);
+
             }
         }
+        //DELETES
+//        if (nextTile.equals('.')) {
+//            for(int i=0;i<this.getHeight();i++) {
+////                for(int j=0;j<this.getWidth();j++) {
+////                    if(tiles.get(i).get(j) == Tile.PLAYER)
+////                        tiles.get(i).set(j, previousTile);
+////                        previousTile = Tile.NOTHING;
+////                }
+////            }
+//        }
+//        if (!nextTile.equals('.')) {
+//            for(int i=0;i<this.getHeight();i++) {
+//                for(int j=0;j<this.getWidth();j++) {
+//                    if(tiles.get(i).get(j) == Tile.PLAYER)
+//                        tiles.get(i).set(j, Tile.NOTHING);
+//                        previousTile = nextTile;
+//                }
+//            }
+//
+//        }
+
+
         //Sets new pos
-        tiles.get(starship.getyPos()).set(starship.getxPos(), Tile.PLAYER);
+        tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos(), Tile.PLAYER);
     }
 
 }

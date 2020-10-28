@@ -8,24 +8,31 @@ public class Starship {
     private int fuel = 100;
     private int damage = 20;
     private int fuelUsed = 10;
-    public boolean inSpace = false;
+    public boolean inSpace = true;
     public Planet currentLocation;
     public String currentAsteroids;
     private boolean playerCanUseShield = false;
     public int xPos, yPos;
+    public int planetXPos, planetYPos;
     private int enemiesDefeated;
 
-    public Starship(GameArea gameArea, Planet currentLocation, int xPos, int yPos){
+    public Starship(Planet currentLocation, int xPos, int yPos){
         setCurrentLocation(currentLocation);
         setxPos(xPos);
         setyPos(yPos);
     }
 
     // Business methods
-    public void move(int dx, int dy)
+    public void moveSpace(int dx, int dy)
     {
         xPos += dx;
         yPos += dy;
+    }
+
+    public void movePlanet(int dx, int dy)
+    {
+        planetXPos += dx;
+        planetYPos += dy;
     }
 
     public void takenDamage(int damage){
@@ -79,6 +86,22 @@ public class Starship {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    public int getPlanetXPos() {
+        return planetXPos;
+    }
+
+    public void setPlanetXPos(int planetXPos) {
+        this.planetXPos = planetXPos;
+    }
+
+    public int getPlanetYPos() {
+        return planetYPos;
+    }
+
+    public void setPlanetYPos(int planetYPos) {
+        this.planetYPos = planetYPos;
     }
 
     public int getHealth() {
