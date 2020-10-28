@@ -1,0 +1,49 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]" date="1603897866432" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 10/28/2020 10:11 AM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Starship.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Starship.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Starship.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/GameArea.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/GameArea.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/GameArea.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/LandingPage.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/client/Main.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/client/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/Game.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/game/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Game.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Sound.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Sound.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/images/Starship.png" />
+    <option name="AFTER_PATH" value="out/production/starship/images/Starship.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Starship.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/game/HUDGui.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/game/HUDGui.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/HUDGui.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/starship/com/games/pieces/Planet.class" />
+    <option name="AFTER_PATH" value="out/production/starship/com/games/pieces/Planet.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_28_2020_10_11_AM_[Default_Changelist]/Planet.class" />
+  </binary>
+</changelist>
