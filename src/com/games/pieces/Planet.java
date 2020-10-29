@@ -15,6 +15,9 @@ public class Planet {
     private Color color;
     private Character symbol;
     private Starship starship;
+    private Tile previousTile = Tile.NOTHING;
+    private Tile nextTile;
+    private int nextX,nextY;
 
     private ArrayList<ArrayList<Tile>> tiles;
 
@@ -72,6 +75,12 @@ public class Planet {
                     case '^':
                         tiles.get(i).add(Tile.SPACEDOCK);
                         break;
+                    case 'e':
+                        tiles.get(i).add(Tile.ELON);
+                        break;
+                    case 'f':
+                        tiles.get(i).add(Tile.FOOD);
+                        break;
                     case 'r':
                         tiles.get(i).add(Tile.RUM);
                         break;
@@ -87,12 +96,12 @@ public class Planet {
                     case '/':
                         tiles.get(i).add(Tile.DOOR);
                         break;
+                    case 'X':
+                        tiles.get(i).add(Tile.A12);
+                        break;
 //                    case 'p':
 //                        tiles.get(i).add(Tile.PIRATE);
 //                        break;
-                    case 'f':
-                        tiles.get(i).add(Tile.FRIENDLY);
-                        break;
                     case '&':
                         tiles.get(i).add(Tile.BLACKJACK);
                         break;
@@ -111,10 +120,6 @@ public class Planet {
                     case '*':
                         tiles.get(i).add(Tile.MAP);
                         break;
-                    case 'X':
-                        tiles.get(i).add(Tile.X);
-                        break;
-
                     case ' ':
                         tiles.get(i).add(Tile.SPACE);
                         break;
@@ -287,21 +292,67 @@ public class Planet {
         return tiles.get(y).get(x);
     }
 
+    public void setTileWithFacing(Tile tile) {
+        Direction facing = starship.getFacing();
+        switch (facing) {
+            case UP:
+                tiles.get(starship.getPlanetYPos()-1).set(starship.getPlanetXPos(), tile);
+                break;
+            case DOWN:
+                tiles.get(starship.getPlanetYPos()+1).set(starship.getPlanetXPos(), tile);
+                break;
+            case LEFT:
+                tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos()-1, tile);
+                break;
+            case RIGHT:
+                tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos()+1, tile);
+                break;
+        }
+    }
+
     //Returns one tile of the floor
     public char getTileChar(int x, int y) {
         return tiles.get(y).get(x).symbol();
     }
 
     public void posUpdate(){
-        //DELETES
+//        tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos(),previousTile);
+//
+//        previousTile = starship.getCurrentLocation().getTile(starship.getPlanetXPos(), starship.getPlanetYPos());
+//        nextX = starship.getPlanetXPos();
+//        nextY = starship.getPlanetYPos();
+
         for(int i=0;i<this.getHeight();i++) {
             for(int j=0;j<this.getWidth();j++) {
                 if(tiles.get(i).get(j) == Tile.PLAYER)
                     tiles.get(i).set(j, Tile.NOTHING);
+
             }
         }
+        //DELETES
+//        if (nextTile.equals('.')) {
+//            for(int i=0;i<this.getHeight();i++) {
+////                for(int j=0;j<this.getWidth();j++) {
+////                    if(tiles.get(i).get(j) == Tile.PLAYER)
+////                        tiles.get(i).set(j, previousTile);
+////                        previousTile = Tile.NOTHING;
+////                }
+////            }
+//        }
+//        if (!nextTile.equals('.')) {
+//            for(int i=0;i<this.getHeight();i++) {
+//                for(int j=0;j<this.getWidth();j++) {
+//                    if(tiles.get(i).get(j) == Tile.PLAYER)
+//                        tiles.get(i).set(j, Tile.NOTHING);
+//                        previousTile = nextTile;
+//                }
+//            }
+//
+//        }
+
+
         //Sets new pos
-        tiles.get(starship.getyPos()).set(starship.getxPos(), Tile.PLAYER);
+        tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos(), Tile.PLAYER);
     }
 
 }

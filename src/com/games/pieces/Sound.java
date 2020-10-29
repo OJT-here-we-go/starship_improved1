@@ -1,9 +1,7 @@
 package com.games.pieces;
 
 import javax.sound.sampled.*;
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.io.*;
 import java.nio.file.Path;
 
@@ -32,6 +30,7 @@ public class Sound {
         gainControl.setValue(slider.getVolumeLevel()-50);
         audioClip.start();
     }
+
 
     /*public void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {
         if (slider.getVolumeLevel() < 1f || slider.getVolumeLevel() > 100f)

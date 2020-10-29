@@ -8,24 +8,44 @@ public class Starship {
     private int fuel = 100;
     private int damage = 20;
     private int fuelUsed = 10;
-    public boolean inSpace = false;
+    public boolean inSpace = true;
     public Planet currentLocation;
     public String currentAsteroids;
     private boolean playerCanUseShield = false;
     public int xPos, yPos;
+    public int planetXPos, planetYPos;
     private int enemiesDefeated;
+    private Direction facing = Direction.DOWN;
 
-    public Starship(GameArea gameArea, Planet currentLocation, int xPos, int yPos){
+    public Starship(Planet currentLocation, int xPos, int yPos){
         setCurrentLocation(currentLocation);
         setxPos(xPos);
         setyPos(yPos);
     }
 
     // Business methods
-    public void move(int dx, int dy)
+    public void moveSpace(int dx, int dy)
     {
         xPos += dx;
         yPos += dy;
+    }
+
+    public void movePlanet(Direction dir)
+    {
+        switch (dir){
+            case UP:
+                planetYPos -= 1;
+                break;
+            case DOWN:
+                planetYPos += 1;
+                break;
+            case LEFT:
+                planetXPos -= 1;
+                break;
+            case RIGHT:
+                planetXPos += 1;
+                break;
+        }
     }
 
     public void takenDamage(int damage){
@@ -42,18 +62,22 @@ public class Starship {
 
     public boolean pickUp(GameArea gameArea, ArrayList<Planet> planets) {
         for(Planet planet : planets) {
-            if(getxPos() == planet.getX() && getyPos() == planet.getY() && planet.getResources().size()>0) {
+            if(getxPos() == planet.getX() && getyPos() == planet.getY()) {
                 gameArea.getOutput().setPlayerMessage();
                 System.out.println("You made it to " + planet.getName() + "!");
-                ArrayList<String> planetsResources = planet.getResources();
-                inventory.add(planetsResources.get(0));
-                planetsResources.remove(0);
+//                ArrayList<String> planetsResources = planet.getResources();
+//                inventory.add(planetsResources.get(0));
+//                planetsResources.remove(0);
                 System.out.println("Inventory: " + inventory);
                 gameArea.getOutput().setDefaultSysOut();
                 return true;
             }
         }
         return false;
+    }
+
+    public void addItem(String item) {
+        this.inventory.add(item);
     }
 
 
@@ -79,6 +103,30 @@ public class Starship {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    public void setFacing(Direction direction){
+        this.facing = direction;
+    }
+
+    public Direction getFacing() {
+        return facing;
+    }
+
+    public int getPlanetXPos() {
+        return planetXPos;
+    }
+
+    public void setPlanetXPos(int planetXPos) {
+        this.planetXPos = planetXPos;
+    }
+
+    public int getPlanetYPos() {
+        return planetYPos;
+    }
+
+    public void setPlanetYPos(int planetYPos) {
+        this.planetYPos = planetYPos;
     }
 
     public int getHealth() {

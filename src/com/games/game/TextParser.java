@@ -80,7 +80,7 @@ public class TextParser {
                 hud.prompt2("Type left, right, up, or down to dodge a randomly placed asteroid.");
 
             } else if (neighbors.get(noun).substring(0, neighbors.get(noun).length()-1).equals("Aliens")) {
-                starship.setInSpace(true);
+//                starship.setInSpace(true);
                 setInAlienBattle(true);
                 hud.prompt1("Alien attack!");
                 hud.prompt2("Type left, right, up, or, down to shoot a randomly placed alien ship.");
