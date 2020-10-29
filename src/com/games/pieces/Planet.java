@@ -63,7 +63,7 @@ public class Planet {
                     case 'L':
                         tiles.get(i).add(Tile.LAND);
                         break;
-                    case '.':
+                    case ' ':
                         tiles.get(i).add(Tile.NOTHING);
                         break;
                     case '#':
@@ -79,17 +79,16 @@ public class Planet {
                         tiles.get(i).add(Tile.ELON);
                         break;
                     case 'f':
-                        tiles.get(i).add(Tile.FOOD);
+                        tiles.get(i).add(Tile.FRIENDLY);
                         break;
                     case 'r':
-                        tiles.get(i).add(Tile.RUM);
+                        tiles.get(i).add(Tile.ROD);
                         break;
-                    case 'g':
-                        tiles.get(i).add(Tile.GOLD);
+                    case '$':
+                        tiles.get(i).add(Tile.ART);
                         break;
-                    case 'm':
-                        tiles.get(i).add(Tile.TREASURE);
-                        break;
+
+
                     case '!':
                         tiles.get(i).add(Tile.KEY);
                         break;
@@ -99,28 +98,42 @@ public class Planet {
                     case 'X':
                         tiles.get(i).add(Tile.A12);
                         break;
+                    case '*':
+                        tiles.get(i).add(Tile.LAVARIVER);
+                        break;
+                    case 'C':
+                        tiles.get(i).add(Tile.CHEF);
+                        break;
+                    case 'G':
+                        tiles.get(i).add(Tile.GRIMES);
+                        break;
+
+
 //                    case 'p':
 //                        tiles.get(i).add(Tile.PIRATE);
 //                        break;
+
+                    case 'g':
+                        tiles.get(i).add(Tile.GOLD);
+                        break;
+                    case 'm':
+                        tiles.get(i).add(Tile.TREASURE);
+                        break;
                     case '&':
                         tiles.get(i).add(Tile.BLACKJACK);
                         break;
                     case 'c':
                         tiles.get(i).add(Tile.COINTOSS);
                         break;
-                    case '$':
-                        tiles.get(i).add(Tile.LOTTERY);
-                        break;
+
                     case 'V':
                         tiles.get(i).add(Tile.VENDOR);
                         break;
                     case '+':
                         tiles.get(i).add(Tile.PLUS);
                         break;
-                    case '*':
-                        tiles.get(i).add(Tile.MAP);
-                        break;
-                    case ' ':
+
+                    case '.':
                         tiles.get(i).add(Tile.SPACE);
                         break;
                     case '`':
@@ -137,9 +150,7 @@ public class Planet {
                     case 'B':
                         tiles.get(i).add(Tile.B);
                         break;
-                    case 'C':
-                        tiles.get(i).add(Tile.C);
-                        break;
+
                     case 'D':
                         tiles.get(i).add(Tile.D);
                         break;
@@ -147,9 +158,7 @@ public class Planet {
                         tiles.get(i).add(Tile.E);
                         break;
 
-                    case 'G':
-                        tiles.get(i).add(Tile.G);
-                        break;
+
                     case 'H':
                         tiles.get(i).add(Tile.H);
                         break;
