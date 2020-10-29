@@ -75,6 +75,12 @@ public class Planet {
                     case '^':
                         tiles.get(i).add(Tile.SPACEDOCK);
                         break;
+                    case 'e':
+                        tiles.get(i).add(Tile.ELON);
+                        break;
+                    case 'f':
+                        tiles.get(i).add(Tile.FOOD);
+                        break;
                     case 'r':
                         tiles.get(i).add(Tile.RUM);
                         break;
@@ -90,12 +96,12 @@ public class Planet {
                     case '/':
                         tiles.get(i).add(Tile.DOOR);
                         break;
+                    case 'X':
+                        tiles.get(i).add(Tile.A12);
+                        break;
 //                    case 'p':
 //                        tiles.get(i).add(Tile.PIRATE);
 //                        break;
-                    case 'f':
-                        tiles.get(i).add(Tile.FRIENDLY);
-                        break;
                     case '&':
                         tiles.get(i).add(Tile.BLACKJACK);
                         break;
@@ -114,10 +120,6 @@ public class Planet {
                     case '*':
                         tiles.get(i).add(Tile.MAP);
                         break;
-                    case 'X':
-                        tiles.get(i).add(Tile.X);
-                        break;
-
                     case ' ':
                         tiles.get(i).add(Tile.SPACE);
                         break;
@@ -288,6 +290,24 @@ public class Planet {
     //Returns one tile of the floor
     public Tile getTile(int x, int y) {
         return tiles.get(y).get(x);
+    }
+
+    public void setTileWithFacing(Tile tile) {
+        Direction facing = starship.getFacing();
+        switch (facing) {
+            case UP:
+                tiles.get(starship.getPlanetYPos()-1).set(starship.getPlanetXPos(), tile);
+                break;
+            case DOWN:
+                tiles.get(starship.getPlanetYPos()+1).set(starship.getPlanetXPos(), tile);
+                break;
+            case LEFT:
+                tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos()-1, tile);
+                break;
+            case RIGHT:
+                tiles.get(starship.getPlanetYPos()).set(starship.getPlanetXPos()+1, tile);
+                break;
+        }
     }
 
     //Returns one tile of the floor

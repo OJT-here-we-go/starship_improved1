@@ -398,7 +398,9 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        super.requestFocus();
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {}

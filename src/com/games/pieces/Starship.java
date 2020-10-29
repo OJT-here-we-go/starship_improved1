@@ -15,6 +15,7 @@ public class Starship {
     public int xPos, yPos;
     public int planetXPos, planetYPos;
     private int enemiesDefeated;
+    private Direction facing = Direction.DOWN;
 
     public Starship(Planet currentLocation, int xPos, int yPos){
         setCurrentLocation(currentLocation);
@@ -29,10 +30,22 @@ public class Starship {
         yPos += dy;
     }
 
-    public void movePlanet(int dx, int dy)
+    public void movePlanet(Direction dir)
     {
-        planetXPos += dx;
-        planetYPos += dy;
+        switch (dir){
+            case UP:
+                planetYPos -= 1;
+                break;
+            case DOWN:
+                planetYPos += 1;
+                break;
+            case LEFT:
+                planetXPos -= 1;
+                break;
+            case RIGHT:
+                planetXPos += 1;
+                break;
+        }
     }
 
     public void takenDamage(int damage){
@@ -49,18 +62,22 @@ public class Starship {
 
     public boolean pickUp(GameArea gameArea, ArrayList<Planet> planets) {
         for(Planet planet : planets) {
-            if(getxPos() == planet.getX() && getyPos() == planet.getY() && planet.getResources().size()>0) {
+            if(getxPos() == planet.getX() && getyPos() == planet.getY()) {
                 gameArea.getOutput().setPlayerMessage();
                 System.out.println("You made it to " + planet.getName() + "!");
-                ArrayList<String> planetsResources = planet.getResources();
-                inventory.add(planetsResources.get(0));
-                planetsResources.remove(0);
+//                ArrayList<String> planetsResources = planet.getResources();
+//                inventory.add(planetsResources.get(0));
+//                planetsResources.remove(0);
                 System.out.println("Inventory: " + inventory);
                 gameArea.getOutput().setDefaultSysOut();
                 return true;
             }
         }
         return false;
+    }
+
+    public void addItem(String item) {
+        this.inventory.add(item);
     }
 
 
@@ -86,6 +103,14 @@ public class Starship {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    public void setFacing(Direction direction){
+        this.facing = direction;
+    }
+
+    public Direction getFacing() {
+        return facing;
     }
 
     public int getPlanetXPos() {

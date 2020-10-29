@@ -19,7 +19,7 @@ public class HUDGui extends JPanel {
     private JLabel map;
     private JLabel currentHealth = new JLabel("Current health:");
     private JLabel health;
-    private JLabel currentPowerUps = new JLabel("Current Power Ups:");
+    private JLabel currentPowerUps = new JLabel("Inventory:");
     private JLabel powerUps;
     private JLabel enemiesDefeated = new JLabel("Enemies Defeated:");
     private JLabel defeated;

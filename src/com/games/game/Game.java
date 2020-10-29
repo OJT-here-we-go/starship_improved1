@@ -37,6 +37,8 @@ public class Game {
     OutputGui output;
     Level level1;
     TextParser parser;
+
+    Sound crashSound = new Sound();
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -367,33 +369,38 @@ public class Game {
             // check if user is pressing the arrow keys
             switch (keyPress.getKeyCode()){
                 case KeyEvent.VK_LEFT:
-                    if (InteractionsUtil.checkRunIntoObjectLeft(starship,output)) {
-                        starship.movePlanet(-1, 0);
-                    }
+                    starship.setFacing(Direction.LEFT);
+                    InteractionsUtil.playerHandler(output, starship, Direction.LEFT);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    if (InteractionsUtil.checkRunIntoObjectRight(starship,output)) {
-                        starship.movePlanet(1, 0);
-                    }
+                    starship.setFacing(Direction.RIGHT);
+                    InteractionsUtil.playerHandler(output, starship, Direction.RIGHT);
                     break;
                 case KeyEvent.VK_UP:
-                    if (InteractionsUtil.checkRunIntoObjectUp(starship,output)) {
-                        starship.movePlanet(0, -1);
-                    }
+                    starship.setFacing(Direction.UP);
+                    InteractionsUtil.playerHandler(output, starship, Direction.UP);
                     break;
                 case KeyEvent.VK_DOWN:
-                    if (InteractionsUtil.checkRunIntoObjectDown(starship,output)) {
-                        starship.movePlanet(0, 1);
-                    }
+                    starship.setFacing(Direction.DOWN);
+                    InteractionsUtil.playerHandler(output,starship, Direction.DOWN);
                     break;
 //                case KeyEvent.VK_Z:
 //                    gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());
 //                    break;
-                case KeyEvent.VK_X:
-                    if (starship.pickUp(gameArea, planets)) {
-
-
+                case KeyEvent.VK_Y:
+                    //wonky here, decisionTree returns a boolean, and if true... return to space...
+                    //if false, just do whatever else decisionTree would regularly do
+                    if (InteractionsUtil.decisionTree(starship, output,true)) {
+                        gameArea.getContentPane().remove(currentPanel);
+                        gameArea.getContentPane().add(gameArea.getAsciiPanel());
+                        starship.inSpace = true;
+                        gameArea.requestFocus();
+                        gameArea.revalidate();
+                        gameArea.repaint();
                     }
+                    break;
+                case KeyEvent.VK_N:
+                    InteractionsUtil.decisionTree(starship, output,false);
                     break;
             }
         } else if (event instanceof MouseEvent) {
@@ -403,6 +410,9 @@ public class Game {
 
     public void renderGameAreaPlanet() throws FileNotFoundException, LineUnavailableException {
         starship.getCurrentLocation().posUpdate();
+        hud.updateHealth();
+        hud.updatePowerUps();
+        hud.updateEnemiesDefeated();
         parentWindow.repaint();
         parentWindow.revalidate();
     }

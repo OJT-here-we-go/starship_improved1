@@ -11,6 +11,11 @@ public enum Tile {
     SEEDS('o'),
     LAND('L'),
     WATER('~'),
+    KEY('!'),
+    DOOR('/'),
+    ELON('e'),
+    FOOD('f'),
+    A12('X'),
 
 
 
@@ -18,8 +23,8 @@ public enum Tile {
     RUM('r'),
     GOLD('g'),
     TREASURE('m'),
-    KEY('!'),
-    DOOR('/'),
+
+
     PLUS('+'),
     MAP('*'),
 
