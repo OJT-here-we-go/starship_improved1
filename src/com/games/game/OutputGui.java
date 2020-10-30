@@ -34,6 +34,8 @@ public class OutputGui extends JPanel {
         playerMessage.setEditable(false);
         this.messagesPanel = new JPanel();
         this.messagesPanel.setLayout(new BoxLayout(messagesPanel, BoxLayout.X_AXIS));
+        hitsMessage.setBackground(Color.yellow);
+        playerMessage.setBackground(Color.gray);
 //        playerMessagePane.add(playerMessageLabel);
         playerMessagePane.setPreferredSize(new Dimension(100, 120));
 //        hitsMessagePane.add(hitsMessageLabel);
