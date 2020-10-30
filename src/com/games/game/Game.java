@@ -38,7 +38,7 @@ public class Game {
     Level level1;
     TextParser parser;
 
-    Sound crashSound = new Sound();
+    Sound sound = new Sound();
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -171,9 +171,11 @@ public class Game {
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
         menu.add(quitButton, "Last");
+        menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
-        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
+
+        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output, sound);
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
@@ -181,6 +183,8 @@ public class Game {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
                 this.gameArea.setVisible(true);
+                menu.getContentPane().remove(sound.getSoundSliderPanel());
+                hud.getHudPanel().add(sound.getSoundSliderPanel(), BorderLayout.SOUTH);
                 gameArea.requestFocus();
             } else {
                 menu.setVisible(true);
@@ -424,7 +428,7 @@ public class Game {
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
         String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-        BackgroundMusic.playBGM(filepath); //CALL BGM WITH DEFAULT
+        BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();
