@@ -303,7 +303,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         bodies.add(new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.cyan, 'E',starship));
         bodies.add(new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship));
         bodies.add(new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.pink, 'V',starship));
-        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship));
+//        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship));
         bodies.add(new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship));
     }
 
