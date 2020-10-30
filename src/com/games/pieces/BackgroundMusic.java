@@ -4,12 +4,13 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;  //
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.JOptionPane;
 
 
     public class BackgroundMusic {
 
-        public static void playBGM(String musicSource) {  //CURRENTLY STATIC (no object necessary to play music)
+        public static void playBGM(String musicSource, VolumeSlider slider) {  //CURRENTLY STATIC (no object necessary to play music)
             // InputStream BGM;
             try {
                 File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
@@ -17,6 +18,9 @@ import javax.swing.JOptionPane;
                     AudioInputStream audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
                     Clip clip = AudioSystem.getClip();
                     clip.open(audioIn); //Open and Load passed in file
+                    FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                    //float volumeNum = slider.getVolumeLevel();
+                    gainControl.setValue(slider.getVolumeInt()/10-2); //slider.getVolumeLevel()-50  -80-6.026
                     clip.start(); //Play file from beginning
                     clip.loop(Clip.LOOP_CONTINUOUSLY);  //Loop until "OK" click
 

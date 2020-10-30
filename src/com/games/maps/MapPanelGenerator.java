@@ -14,13 +14,14 @@ import java.io.FileNotFoundException;
  * Created by bradsmialek on Sun - 8/9/20 @ 2:40 PM
  */
 public class MapPanelGenerator extends JPanel
-        implements KeyListener {
-    private Starship starship;
+//        implements KeyListener
+{
+    public Starship starship;
     private Rectangle gameScreenRec;
 
     public MapPanelGenerator(Starship starship) {
         this.starship = starship;
-        addKeyListener(this);
+//        addKeyListener(this);
         this.setFocusable(true);
 
     }
@@ -32,50 +33,9 @@ public class MapPanelGenerator extends JPanel
         revalidate();
 
         //BACKGROUND
-//        g.setColor(Color.BLACK);
         g.fillRect(0, 0, 700, 500);
-        g.setColor(Color.BLUE);
-//        g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
-//        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
-//        g.drawRoundRect(790, 310, Attributes.windowWidth - 800, Attributes.windowHeight - 655, 5, 5);
-//        g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
-
-
-//        //MAP
-//        g.setColor(Color.lightGray);
-//        try {
-//            int a = 840, b = 340;
-//            for (int i = 0; i < starship.getCurrentLocation().getHeight(); i++) {
-//                for (int j = 0; j < starship.getCurrentLocation().getWidth(); j++) {
-//
-//                    if (starship.getCurrentLocation().getTileChar(j, i) == '@') {
-//                        g.setColor(Color.RED);
-//                        g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), a, b);
-//                        g.setColor(Color.lightGray);
-//                    }
-//                    else if (starship.getCurrentLocation().getTileChar(j, i) == '.') {
-//                        g.setColor(Color.darkGray);
-//                        g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), a, b);
-//                        g.setColor(Color.orange);
-//                    } else if (starship.getCurrentLocation().getTileChar(j, i) == '#') {
-//                        g.setColor(Color.pink);
-//                        g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), a, b);
-//                        g.setColor(Color.lightGray);
-//                    } else {
-//                        g.setColor(Color.lightGray);
-//                        g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), a, b);
-//                    }
-//                    a += 8;
-//                }
-//                b += 13;
-//                a = 840;
-//            }
-//        } catch (Exception drawCurrentMapError) {
-//            System.out.println("Something went wrong while we were drawing the map");
-//        }
-
-        //Island
         g.setColor(Color.orange);
+        //planet
         try {
 
             int x = 15, y = 20;
@@ -85,6 +45,8 @@ public class MapPanelGenerator extends JPanel
                     if (starship.getCurrentLocation().getTileChar(j, i) == '@') {
                         g.setColor(Color.MAGENTA);
                         g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), x, y);
+                        starship.setPlanetXPos(j);
+                        starship.setPlanetYPos(i);
                         g.setColor(Color.orange);
                     }else if (starship.getCurrentLocation().getTileChar(j, i) == '+') {
                         g.setColor(Color.lightGray);
@@ -175,48 +137,48 @@ public class MapPanelGenerator extends JPanel
     }
 
 
+//
+//    @Override
+//    public void keyPressed(KeyEvent arg0) {
+//        if (starship.getHealth()>0) {
+//
+//        try {
+//            switch (arg0.getKeyCode()) {
+//                case KeyEvent.VK_W:
+//                case KeyEvent.VK_UP:
+//                    starship.movePlanet(0, -1);
+//                    break;
+//                case KeyEvent.VK_A:
+//                case KeyEvent.VK_LEFT:
+//                    starship.movePlanet(-1, 0);
+//                    break;
+//                case KeyEvent.VK_S:
+//                case KeyEvent.VK_DOWN:
+//                    starship.movePlanet(0, 1);
+//
+//                    break;
+//                case KeyEvent.VK_D:
+//                case KeyEvent.VK_RIGHT:
+//                    starship.movePlanet(1, 0);
+//                    break;
+//            }
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Player input error");
+//        }
+//        } else {
+//        }
+//    }
 
-    @Override
-    public void keyPressed(KeyEvent arg0) {
-        if (starship.getHealth()>0) {
 
-        try {
-            switch (arg0.getKeyCode()) {
-                case KeyEvent.VK_W:
-                case KeyEvent.VK_UP:
-                    starship.move(0, -1);
-                    break;
-                case KeyEvent.VK_A:
-                case KeyEvent.VK_LEFT:
-                    starship.move(-1, 0);
-                    break;
-                case KeyEvent.VK_S:
-                case KeyEvent.VK_DOWN:
-                    starship.move(0, 1);
-
-                    break;
-                case KeyEvent.VK_D:
-                case KeyEvent.VK_RIGHT:
-                    starship.move(1, 0);
-                    break;
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Player input error");
-        }
-        } else {
-        }
-    }
-
-
-
-    @Override
-    public void keyReleased(KeyEvent arg0) {
-    }
-
-    @Override
-    public void keyTyped(KeyEvent arg0) {
-    }
+//
+//    @Override
+//    public void keyReleased(KeyEvent arg0) {
+//    }
+//
+//    @Override
+//    public void keyTyped(KeyEvent arg0) {
+//    }
 
 }

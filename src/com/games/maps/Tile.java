@@ -2,7 +2,7 @@ package com.games.maps;
 
 
 public enum Tile {
-    NOTHING ('.'),
+    NOTHING (' '),
     WALL('#'),
     PLAYER('@'),
     SPACEDOCK('^'),
@@ -11,37 +11,53 @@ public enum Tile {
     SEEDS('o'),
     LAND('L'),
     WATER('~'),
-
-
-
-    FRIENDLY('f'),
-    RUM('r'),
-    GOLD('g'),
-    TREASURE('m'),
     KEY('!'),
     DOOR('/'),
+    FUEL('D'),
+
+
+    //venus
+    LAVARIVER('*'),
+    VENUS9('9'),
+    VENUS8('8'),
+
+    //earth
+    CHEF('C'),
+    ROD('r'),
+    GRIMES('G'),
+    ART('$'),
+    FRIENDLY('f'),
+    GOLD('g'),
+
+    //moon
+    ELON('e'),
+    A12('X'),
+    MINED('m'),
+    MINER('M'),
+    ENGINEER('E'),
+    TREE('T'),
+    WITHERED('t'),
+    ICE('I'),
+    ORE('o'),
+
+
     PLUS('+'),
-    MAP('*'),
 
     SPACE(' '),
     POI('?'),
     CLUE('`'),
     COINTOSS('c'),
     VENDOR('V'),
-    LOTTERY('$'),
     BLACKJACK('&'),
+    ASTRO('a'),
 
     A('A'),
     B('B'),
-    C('C'),
-    D('D'),
-    E('E'),
-    G('G'),
     H('H'),
-    I('I'),
+
     J('J'),
     K('K'),
-    M('M'),
+
     N('N'),
     O('O'),
     P('P'),

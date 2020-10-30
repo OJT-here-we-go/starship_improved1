@@ -25,7 +25,7 @@ public class Game {
     Planet earth;
     Planet moon;
     Planet venus;
-    Planet mercury;
+//    Planet mercury;
     Planet mars;
     Planet obstacle1;
     Planet obstacle2;
@@ -37,6 +37,8 @@ public class Game {
     OutputGui output;
     Level level1;
     TextParser parser;
+
+    Sound sound = new Sound();
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -120,14 +122,14 @@ public class Game {
     public void begin(int screenWidth, int screenHeight) throws InterruptedException, FileNotFoundException, LineUnavailableException {
 
         this.player1 = new Player('@', Color.cyan, 8, 16);
-        this.starship = new Starship(gameArea, earth, 8, 16);
+        this.starship = new Starship(earth, 8, 16);
 //        this is where they set positions for all the planets... hmmm but its not really used?
         this.earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16,
                 Color.blue, 'E',starship);
         this.moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
         this.venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6
                 , 20, Color.magenta, 'V',starship);
-        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
+//        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
         this.obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),
                 starship);
         this.obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
@@ -135,7 +137,7 @@ public class Game {
         this.planets.add(earth);
         this.planets.add(moon);
         this.planets.add(venus);
-        this.planets.add(mercury);
+//        this.planets.add(mercury);
         this.planets.add(mars);
         this.planets.add(obstacle1);
         this.planets.add(obstacle2);
@@ -169,9 +171,11 @@ public class Game {
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
         menu.add(quitButton, "Last");
+        menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
-        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
+
+        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output, sound);
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
@@ -179,6 +183,8 @@ public class Game {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
                 this.gameArea.setVisible(true);
+                menu.getContentPane().remove(sound.getSoundSliderPanel());
+                hud.getHudPanel().add(sound.getSoundSliderPanel(), BorderLayout.SOUTH);
                 gameArea.requestFocus();
             } else {
                 menu.setVisible(true);
@@ -317,23 +323,31 @@ public class Game {
     }
     // handle user input, such as KeyEvents
     //THIS IS THE MEAT AND POTATOES
-    public void processInput() {
+    public void processInputSpace() {
         InputEvent event = gameArea.getNextInput();
         if (event instanceof KeyEvent) {
             KeyEvent keyPress = (KeyEvent)event;
             // check if user is pressing the arrow keys
             switch (keyPress.getKeyCode()){
                 case KeyEvent.VK_LEFT:
-                    starship.move(-1, 0);
+                    if (starship.getxPos() > 0) {
+                        starship.moveSpace(-1, 0);
+                    }
                     break;
                 case KeyEvent.VK_RIGHT:
-                    starship.move(1, 0);
+                    if (starship.getxPos() < 75) {
+                        starship.moveSpace(1, 0);
+                    }
                     break;
                 case KeyEvent.VK_UP:
-                    starship.move(0, -1);
+                    if (starship.getyPos()> 0) {
+                        starship.moveSpace(0, -1);
+                    }
                     break;
                 case KeyEvent.VK_DOWN:
-                    starship.move(0, 1);
+                    if (starship.getyPos() <23) {
+                        starship.moveSpace(0, 1);
+                    }
                     break;
                 case KeyEvent.VK_Z:
                     gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());
@@ -343,6 +357,8 @@ public class Game {
                         gameArea.getContentPane().remove(gameArea.getAsciiPanel());
                         currentPanel = new MapPanelGenerator(starship);
                         gameArea.add(currentPanel);
+                        starship.inSpace = false;
+                        gameArea.requestFocus();
                         gameArea.revalidate();
                         gameArea.repaint();
                     }
@@ -352,16 +368,70 @@ public class Game {
             // possibly do things if the user clicks the mouse
         }
     }
-    public void renderGameArea() throws FileNotFoundException, LineUnavailableException {
+
+    public void renderGameAreaSpace() throws FileNotFoundException, LineUnavailableException {
         gameArea.pointCameraAt(starship, starship.getxPos(), starship.getyPos());
         gameArea.refresh();
     }
 
-
-    public void renderPlanetMaps(){
-        starship.getCurrentLocation().posUpdate();
-        currentPanel.repaint();
+    public void processInputPlanet() {
+        InputEvent event = gameArea.getNextInput();
+        if (event instanceof KeyEvent) {
+            KeyEvent keyPress = (KeyEvent)event;
+            // check if user is pressing the arrow keys
+            switch (keyPress.getKeyCode()){
+                case KeyEvent.VK_LEFT:
+                    starship.setFacing(Direction.LEFT);
+                    InteractionsUtil.playerHandler(output, starship, Direction.LEFT);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    starship.setFacing(Direction.RIGHT);
+                    InteractionsUtil.playerHandler(output, starship, Direction.RIGHT);
+                    break;
+                case KeyEvent.VK_UP:
+                    starship.setFacing(Direction.UP);
+                    InteractionsUtil.playerHandler(output, starship, Direction.UP);
+                    break;
+                case KeyEvent.VK_DOWN:
+                    starship.setFacing(Direction.DOWN);
+                    InteractionsUtil.playerHandler(output,starship, Direction.DOWN);
+                    break;
+//                case KeyEvent.VK_Z:
+//                    gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());
+//                    break;
+                case KeyEvent.VK_Y:
+                    //wonky here, decisionTree returns a boolean, and if true... return to space...
+                    //if false, just do whatever else decisionTree would regularly do
+                    if (InteractionsUtil.decisionTree(starship, output,true)) {
+                        gameArea.getContentPane().remove(currentPanel);
+                        gameArea.getContentPane().add(gameArea.getAsciiPanel());
+                        starship.inSpace = true;
+                        gameArea.requestFocus();
+                        gameArea.revalidate();
+                        gameArea.repaint();
+                    }
+                    break;
+                case KeyEvent.VK_N:
+                    InteractionsUtil.decisionTree(starship, output,false);
+                    break;
+            }
+        } else if (event instanceof MouseEvent) {
+            // possibly do things if the user clicks the mouse
+        }
     }
+
+    public void renderGameAreaPlanet() throws FileNotFoundException, LineUnavailableException {
+        starship.getCurrentLocation().posUpdate();
+        hud.updateHealth();
+        hud.updatePowerUps();
+        hud.updateEnemiesDefeated();
+        parentWindow.repaint();
+        parentWindow.revalidate();
+        if (starship.getHealth() <= 0) {
+            System.exit(3);
+        }
+    }
+
 
     // load the JFrame window
 
@@ -369,13 +439,20 @@ public class Game {
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
         String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-        BackgroundMusic.playBGM(filepath); //CALL BGM WITH DEFAULT
+        BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();
 
-            processInput();
-            renderGameArea();
+            if (starship.inSpace) {
+                processInputSpace();
+                renderGameAreaSpace();
+            }
+            else {
+                processInputPlanet();
+                renderGameAreaPlanet();
+            }
+
             long endTime = System.nanoTime();
 
             long sleepTime = timePerLoop - (endTime-startTime);
