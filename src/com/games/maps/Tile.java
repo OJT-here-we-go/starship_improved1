@@ -2,7 +2,7 @@ package com.games.maps;
 
 
 public enum Tile {
-    NOTHING ('.'),
+    NOTHING (' '),
     WALL('#'),
     PLAYER('@'),
     SPACEDOCK('^'),
@@ -14,31 +14,34 @@ public enum Tile {
     KEY('!'),
     DOOR('/'),
     ELON('e'),
-    FOOD('f'),
+    //FOOD('f'),
     A12('X'),
 
 
+    LAVARIVER('*'),
+
+    //earth
+    CHEF('C'),
+    ROD('r'),
+    GRIMES('G'),
+    ART('$'),
 
     FRIENDLY('f'),
-    RUM('r'),
     GOLD('g'),
     TREASURE('m'),
 
 
     PLUS('+'),
-    MAP('*'),
 
     SPACE(' '),
     POI('?'),
     CLUE('`'),
     COINTOSS('c'),
     VENDOR('V'),
-    LOTTERY('$'),
     BLACKJACK('&'),
 
     A('A'),
     B('B'),
-    C('C'),
     D('D'),
     E('E'),
     G('G'),

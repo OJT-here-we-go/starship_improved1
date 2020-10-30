@@ -11,7 +11,8 @@ public class VolumeSlider {
     // make fields private
     private JSlider volSlider;
     private JLabel label;
-    private int volumeLevel = 2;
+    private int volumeLevel = 30;
+    private JPanel panel;
 
     /*  // main for testing purposes
         public static void main(String[] args) {
@@ -25,21 +26,22 @@ public class VolumeSlider {
 
     //JFrame with horizontal slider panel
     public void sliderGen() {
-        JFrame sliderDisplay = new JFrame();
+        //JFrame sliderDisplay = new JFrame();
         volSlider = new JSlider();
         volSlider.setMinimum(1); //
         volSlider.setMaximum(74);
         volSlider.setValue(30); // default volume
         volSlider.addChangeListener(new VolumeChangeAction());
-        label = new JLabel("");
+        label = new JLabel("Volume");
 
-        JPanel panel = new JPanel();
-        panel.add(volSlider);
+        panel = new JPanel();
         panel.add(label);
-        sliderDisplay.add(panel, BorderLayout.CENTER);
-        sliderDisplay.setSize(300, 60);
-        sliderDisplay.setVisible(true);
-        sliderDisplay.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel.add(volSlider);
+
+//        sliderDisplay.add(panel, BorderLayout.CENTER);
+//        sliderDisplay.setSize(300, 60);
+//        sliderDisplay.setVisible(true);
+//        sliderDisplay.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
@@ -52,6 +54,14 @@ public class VolumeSlider {
     }
 
     public float getVolumeLevel() {
-        return (float) Math.pow(10f, volumeLevel / 50f);
+        return (float) Math.pow(10f, volumeLevel / 50f); //
+    }
+
+    public float getVolumeInt() {
+        return volumeLevel;
+    }
+
+    public JPanel getSliderPanel() {
+        return panel;
     }
 }
