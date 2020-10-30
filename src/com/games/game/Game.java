@@ -25,7 +25,7 @@ public class Game {
     Planet earth;
     Planet moon;
     Planet venus;
-    Planet mercury;
+//    Planet mercury;
     Planet mars;
     Planet obstacle1;
     Planet obstacle2;
@@ -38,7 +38,7 @@ public class Game {
     Level level1;
     TextParser parser;
 
-    Sound crashSound = new Sound();
+    Sound sound = new Sound();
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -129,7 +129,7 @@ public class Game {
         this.moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
         this.venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6
                 , 20, Color.magenta, 'V',starship);
-        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
+//        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
         this.obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),
                 starship);
         this.obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
@@ -137,7 +137,7 @@ public class Game {
         this.planets.add(earth);
         this.planets.add(moon);
         this.planets.add(venus);
-        this.planets.add(mercury);
+//        this.planets.add(mercury);
         this.planets.add(mars);
         this.planets.add(obstacle1);
         this.planets.add(obstacle2);
@@ -171,9 +171,11 @@ public class Game {
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
         menu.add(quitButton, "Last");
+        menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
-        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
+
+        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output, sound);
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
@@ -181,6 +183,8 @@ public class Game {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
                 this.gameArea.setVisible(true);
+                menu.getContentPane().remove(sound.getSoundSliderPanel());
+                hud.getHudPanel().add(sound.getSoundSliderPanel(), BorderLayout.SOUTH);
                 gameArea.requestFocus();
             } else {
                 menu.setVisible(true);
@@ -326,16 +330,24 @@ public class Game {
             // check if user is pressing the arrow keys
             switch (keyPress.getKeyCode()){
                 case KeyEvent.VK_LEFT:
-                    starship.moveSpace(-1, 0);
+                    if (starship.getxPos() > 0) {
+                        starship.moveSpace(-1, 0);
+                    }
                     break;
                 case KeyEvent.VK_RIGHT:
-                    starship.moveSpace(1, 0);
+                    if (starship.getxPos() < 75) {
+                        starship.moveSpace(1, 0);
+                    }
                     break;
                 case KeyEvent.VK_UP:
-                    starship.moveSpace(0, -1);
+                    if (starship.getyPos()> 0) {
+                        starship.moveSpace(0, -1);
+                    }
                     break;
                 case KeyEvent.VK_DOWN:
-                    starship.moveSpace(0, 1);
+                    if (starship.getyPos() <23) {
+                        starship.moveSpace(0, 1);
+                    }
                     break;
                 case KeyEvent.VK_Z:
                     gameArea.drawMyBullets(starship.getxPos(), starship.getyPos());
@@ -415,6 +427,9 @@ public class Game {
         hud.updateEnemiesDefeated();
         parentWindow.repaint();
         parentWindow.revalidate();
+        if (starship.getHealth() <= 0) {
+            System.exit(3);
+        }
     }
 
 
@@ -424,7 +439,7 @@ public class Game {
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
         String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-        BackgroundMusic.playBGM(filepath); //CALL BGM WITH DEFAULT
+        BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();

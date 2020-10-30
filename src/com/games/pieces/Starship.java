@@ -80,6 +80,12 @@ public class Starship {
         this.inventory.add(item);
     }
 
+    public void removeItem(String item){
+        if (this.inventory.contains(item)) {
+            inventory.remove(item);
+        }
+    }
+
 
     public void addDefeated() {
         this.enemiesDefeated++;

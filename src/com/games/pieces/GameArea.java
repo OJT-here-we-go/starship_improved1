@@ -30,14 +30,15 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     private Player player;
     private OutputGui output;
     private HUDGui hud;
+    private Sound sound;
 
-    Sound crashSound = new Sound();
 
-    public GameArea(Rectangle gameAreaRec, Starship starship, Player player, HUDGui hud, OutputGui output) {
+    public GameArea(Rectangle gameAreaRec, Starship starship, Player player, HUDGui hud, OutputGui output, Sound sound) {
         this.starship = starship;
         this.player = player;
         this.output = output;
         this.hud =  hud;
+        this.sound = sound;
         gameScreenRec = gameAreaRec;
         inputQueue = new LinkedList<>();
         panel = new AsciiPanel(this.gameScreenRec.width, this.gameScreenRec.height);
@@ -59,6 +60,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         drawPlanets();
         super.getContentPane().add(hud.getHudPanel(), BorderLayout.LINE_END);
         super.getContentPane().add(output.getOutputPanel(), BorderLayout.SOUTH);
+
 
         super.repaint();
         super.revalidate();
@@ -226,7 +228,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
             panel.write('@', spx, spy, Color.cyan, Color.black);
         }
         else if ((spx >= 0 && spx < gameScreenRec.width) && (spy >= 0 && spy < gameScreenRec.height) && hitsIndicator > 0) {
-            crashSound.playSound();
+            sound.playSound();
             panel.write('@', spx, spy, Color.red, Color.black);
         }
         this.output.setDefaultSysOut();
@@ -301,7 +303,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         bodies.add(new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.cyan, 'E',starship));
         bodies.add(new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship));
         bodies.add(new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.pink, 'V',starship));
-        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship));
+//        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship));
         bodies.add(new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship));
     }
 

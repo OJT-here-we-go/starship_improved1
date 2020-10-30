@@ -1,7 +1,7 @@
 package com.games.pieces;
 
 import javax.sound.sampled.*;
-import java.awt.*;
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.Path;
 
@@ -18,7 +18,7 @@ public class Sound {
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);
             setVolume(slider, audioClip);
-            audioClip.start();
+            //audioClip.start();
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
@@ -30,6 +30,15 @@ public class Sound {
         gainControl.setValue(slider.getVolumeLevel()-50);
         audioClip.start();
     }
+
+    public VolumeSlider getSlider() {
+        return slider;
+    }
+
+    public JPanel getSoundSliderPanel() {
+        return slider.getSliderPanel();
+    }
+
 
 
     /*public void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {
