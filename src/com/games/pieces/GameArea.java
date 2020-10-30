@@ -30,14 +30,16 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     private Player player;
     private OutputGui output;
     private HUDGui hud;
+    private Sound sound;
 
-    Sound crashSound = new Sound();
+    //Sound crashSound = new Sound();
 
-    public GameArea(Rectangle gameAreaRec, Starship starship, Player player, HUDGui hud, OutputGui output) {
+    public GameArea(Rectangle gameAreaRec, Starship starship, Player player, HUDGui hud, OutputGui output, Sound sound) {
         this.starship = starship;
         this.player = player;
         this.output = output;
         this.hud =  hud;
+        this.sound = sound;
         gameScreenRec = gameAreaRec;
         inputQueue = new LinkedList<>();
         panel = new AsciiPanel(this.gameScreenRec.width, this.gameScreenRec.height);
@@ -216,17 +218,12 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
 
         //the distance from the left(x) and top(y) to begin writing from
 
-
-
-
-
-
         // draw the starship
         if ((spx >= 0 && spx < gameScreenRec.width) && (spy >= 0 && spy < gameScreenRec.height) && hitsIndicator <= 0) {
             panel.write('@', spx, spy, Color.cyan, Color.black);
         }
         else if ((spx >= 0 && spx < gameScreenRec.width) && (spy >= 0 && spy < gameScreenRec.height) && hitsIndicator > 0) {
-            crashSound.playSound();
+            sound.playSound("Sound/beep-07.wav");
             panel.write('@', spx, spy, Color.red, Color.black);
         }
         this.output.setDefaultSysOut();

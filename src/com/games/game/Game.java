@@ -171,7 +171,7 @@ public class Game {
         menu.add(quitButton, "Last");
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
-        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output);
+        this.gameArea = new GameArea(new Rectangle(screenWidth, screenHeight), this.starship, this.player1, this.hud, this.output, sound);
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
@@ -366,10 +366,12 @@ public class Game {
     // load the JFrame window
 
     // this can be put in the main to load windows on same process rather than what first group did
+    Sound sound = new Sound();
+    BackgroundMusic music = new BackgroundMusic();
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
         String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-        BackgroundMusic.playBGM(filepath); //CALL BGM WITH DEFAULT
+        music.playBGM(filepath, sound); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();

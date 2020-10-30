@@ -1,22 +1,31 @@
 package com.games.pieces;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;  //
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JOptionPane;
 
 
     public class BackgroundMusic {
-
-        public static void playBGM(String musicSource) {  //CURRENTLY STATIC (no object necessary to play music)
+        private Sound sound;
+        private String musicSource;
+        public void playBGM(String musicSource, Sound sound) throws FileNotFoundException, LineUnavailableException {  //CURRENTLY STATIC (no object necessary to play music)
             // InputStream BGM;
+            this.sound = sound;
+            this.musicSource = musicSource;
+            sound.playSound(musicSource);
             try {
                 File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
                 if(musicPath.exists()){
+
                     AudioInputStream audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
                     Clip clip = AudioSystem.getClip();
                     clip.open(audioIn); //Open and Load passed in file
+                    sound.setVolume(clip);
+
                     clip.start(); //Play file from beginning
                     clip.loop(Clip.LOOP_CONTINUOUSLY);  //Loop until "OK" click
 

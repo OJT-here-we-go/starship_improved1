@@ -11,26 +11,41 @@ import java.nio.file.Path;
 the starship collides with a foreign object*/
 public class Sound {
     // Control sound volume using a JPanel slider that has been passed from the VolumeSlider class
-    Clip audioClip;
+    String musicSource;
+    private Clip audioClip;
     VolumeSlider slider = new VolumeSlider();
-    public void playSound() throws FileNotFoundException, LineUnavailableException {
+
+    public void playSound(String musicSource) throws FileNotFoundException, LineUnavailableException {
         try {
-            File inputFile = new File(String.valueOf(Path.of("Sound","beep-07.wav")));
+            this.musicSource = musicSource;
+            File inputFile = new File(musicSource);
+            //String.valueOf(Path.of("Sound", "beep-07.wav"))
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);
-            setVolume(slider, audioClip);
+            setVolume(audioClip);
             audioClip.start();
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {
+    public void playSoundWithoutSlider() throws FileNotFoundException, LineUnavailableException {
+        try {
+            File inputFile = new File(String.valueOf(Path.of("Sound", "beep-07.wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
+            audioClip = AudioSystem.getClip();
+            audioClip.open(audioInputStream);
+            audioClip.start();
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void setVolume(Clip audioClip) throws IOException, LineUnavailableException {
         //audioClip.open(stream);
         FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(slider.getVolumeLevel()-50);
-        audioClip.start();
+        gainControl.setValue(this.slider.getVolumeLevel() - 50);
+        //audioClip.start();
     }
 
     /*public void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {

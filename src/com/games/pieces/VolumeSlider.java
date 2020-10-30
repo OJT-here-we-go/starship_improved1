@@ -19,9 +19,9 @@ public class VolumeSlider {
         sliderGen.sliderGen();
     }*/
 
-    public VolumeSlider(){
+    public VolumeSlider() {
         sliderGen();
-    };
+    }
 
     //JFrame with horizontal slider panel
     public void sliderGen() {
