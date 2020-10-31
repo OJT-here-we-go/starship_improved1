@@ -13,6 +13,8 @@ import java.util.Random;
 public final class InteractionsUtil {
     private static Tile interactable;
     private static List<String> dialogFriendly = new ArrayList<>();
+    private static List<String> astroFriendly = new ArrayList<>();
+    private static Random rand = new Random();
     static {
         dialogFriendly.add("Patron: Where is your mask? PREVENT THE SPREAD OF CVD-19!");
         dialogFriendly.add("Patron: Stay 6 feet back you heathen!");
@@ -20,6 +22,12 @@ public final class InteractionsUtil {
         dialogFriendly.add("Patron: I'm supporting this Cafe by eating here.");
         dialogFriendly.add("Patron: Man... the tables are only at half capacity... CVD-19 sucks.");
         dialogFriendly.add("Patron: WHY AM I GREEN. ARE WE IN A GAME? AHHHHHHHHHHHHHHHHHHHHH!");
+        astroFriendly.add("Astronaut: Man... Earth has really gone to **** with CVD-19 hun...?");
+        astroFriendly.add("Astronaut: GLORY TO 'MURICA. I'M NOT DRUNK, YOU'RE DRUNK!");
+        astroFriendly.add("Astronaut: All the liquids taste like urine up here... :(");
+        astroFriendly.add("Astronaut: 2 more years before I can go back home... *hic*...");
+        astroFriendly.add("Astronaut: ALIENS! *JAZZ HANDS*");
+        astroFriendly.add("Astronaut: I can bench press 415LBs up here, it's dope!");
     }
 
     //private constructor to prevent instantiation
@@ -141,7 +149,6 @@ public final class InteractionsUtil {
                 break; //return to space
             case FRIENDLY:
                 System.out.println("---------------------------------------------------------");
-                Random rand = new Random();
                 System.out.println(dialogFriendly.get(rand.nextInt(dialogFriendly.size())));
                 interactable = Tile.NOTHING;
                 break; //random dialog for friendlies
@@ -153,11 +160,13 @@ public final class InteractionsUtil {
                 interactable = Tile.NOTHING;
                 break;
             case ART:
-                output.setHitsMessage();
+                System.out.println("---------------------------------------------------------");
                 System.out.println("Some fine art! Looks super expensive... Better not brea-");
+                output.setHitsMessage();
                 System.out.println("You broke the art... Grimes slaps you in the face.");
-                System.out.println("You take 10 damage rather than paying for it.");
-                starship.takenDamage(10);
+                System.out.println("You take 20 damage rather than paying for it.");
+                starship.getCurrentLocation().setTileWithFacing(Tile.NOTHING);
+                starship.takenDamage(20);
                 interactable = Tile.NOTHING;
                 break;
             case ROD:
@@ -195,6 +204,42 @@ public final class InteractionsUtil {
                 System.out.println("Grimes: Your princess is in another castle");
                 interactable = Tile.NOTHING;
                 break;
+            case ORE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Looks like it's some moon ore?");
+                System.out.println("Maybe the miner will give me a pickaxe!");
+                interactable = Tile.NOTHING;
+                break;
+
+            case MINER:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Miner: Do you see how glorious my mined ore are?");
+                System.out.println("Miner: Take my pickaxe Bethany and give it a whirl!");
+                System.out.println("You received a pickaxe (by force)!");
+                starship.addItem("Pickaxe");
+                starship.getCurrentLocation().setTileWithFacing(Tile.MINED);
+                interactable = Tile.NOTHING;
+                break;
+            case MINED:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Miner: Treat Bethany well...");
+                System.out.println("He seems a little defeated after giving you his prized pickaxe");
+                interactable = Tile.NOTHING;
+                break;
+            case FLAG:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("IT'S THE AMERICAN FLAG!");
+                System.out.println("We need this for when we colonize Mars!");
+                System.out.println("The nearby astronauts are eyeing you...");
+                System.out.println("Take the Flag and risk getting beaten up by Astronauts?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case ASTRO:
+                System.out.println("---------------------------------------------------------");
+                System.out.println(astroFriendly.get(rand.nextInt(astroFriendly.size())));
+                interactable = Tile.NOTHING;
+                break;
             case ELON:
                 System.out.println("---------------------------------------------------------");
                 System.out.println("Elon: Hey there, I'm Elon Musk... We should Colonize Mars to extend humanity into a multi-planetary species!");
@@ -203,11 +248,65 @@ public final class InteractionsUtil {
                 System.out.println("   [Y] Yes     [N] No");
                 interactable = tile;
                 break;
+            case ENGINEER:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Engineer: Hun? I'm not Elon! I'm a lady! What the heck!");
+                System.out.println("Engineer: I do have his room key though... don't ask why.");
+                System.out.println("Engineer: I'll give it to you if you water this withered tree!");
+                interactable = Tile.NOTHING;
+                break;
+            case ICE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Looks like it's ice! I could mine this for some water!");
+                System.out.println("Use pickaxe to mine some ice for water?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case TREE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("This tree looks like it's healthy!");
+                interactable = Tile.NOTHING;
+                break;
+            case WITHERED:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("This tree looks a little withered... it could use some water!");
+                System.out.println("Use water on the tree?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
             case A12:
                 System.out.println("---------------------------------------------------------");
                 System.out.println("X Æ A-12: Where did daddy go... :'<");
                 interactable = Tile.NOTHING;
                 break;
+            case FUEL:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("It's a fuel depot, do you want to refuel? (Recover to max health)");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case LAVARIVER:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("It's a river... of lava. Better not get too close to it.");
+                output.setHitsMessage();
+                System.out.println("Being near the heat hurts... you take 1 damage.");
+                starship.takenDamage(1);
+                interactable = Tile.NOTHING;
+                break;
+
+            case VENUS9:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Venusian: Careful of the beautiful stars over there, it's a sparking hot lava river");
+                interactable = Tile.NOTHING;
+                break;
+            case VENUS8:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Venusian: answer the riddle to ");
+                System.out.println("Venusian: Men are from Mars but Women are from _____\"?");
+                interactable = Tile.NOTHING;
+                break;
+
+
             default:
                 output.setHitsMessage();
                 System.out.println("---------------------------------------------------------");
@@ -245,6 +344,16 @@ public final class InteractionsUtil {
             }
             else {
                 System.out.println("Ok then... carry on.");
+            }
+        }
+
+        else if (interactable == Tile.FUEL) {
+            if (yesNo) {
+                System.out.println("You refuel from the depot and recover to 100 health!");
+                starship.setHealth(100);
+            }
+            else {
+                System.out.println("Ok... you don't have to play this game on hard mode...");
             }
         }
 
@@ -288,6 +397,68 @@ public final class InteractionsUtil {
             }
             else {
                 System.out.println("You probably don't know how to fish anyways...");
+            }
+        }
+
+        else if (interactable == Tile.WITHERED){
+            if (yesNo){
+                if (starship.getInventory().contains("Water")) {
+                    System.out.println("You use the water on the tree!");
+                    System.out.println("By some black magic, the tree makes a full recovery!");
+                    starship.getCurrentLocation().setTileWithFacing(Tile.TREE);
+                    System.out.println("The sus female engineer gives you a key!");
+                    starship.removeItem("Water");
+                    starship.addItem("Key");
+                }
+                else {
+                    System.out.println("You don't have any water in your inventory!");
+                }
+            }
+            else {
+                System.out.println("Better save the water for later... right? (wrong)");
+            }
+        }
+
+        else if (interactable == Tile.ICE){
+            if (yesNo){
+                if (starship.getInventory().contains("Pickaxe")) {
+                    System.out.println("You take Bethany in your firm hands... and swing at the ice!");
+                    System.out.println("The ice is much harder than you thought!");
+                    starship.getCurrentLocation().setTileWithFacing(Tile.NOTHING);
+                    System.out.println("You get enough to melt into water... but Bethany broke...");
+                    System.out.println("Why does everything break these days?");
+                    starship.removeItem("Pickaxe");
+                    starship.addItem("Water");
+                }
+                else {
+                    System.out.println("You don't have a pickaxe in your inventory!");
+                }
+            }
+            else {
+                System.out.println("What else are you going to use a pickaxe for? MURDER?");
+            }
+        }
+
+        else if (interactable == Tile.FLAG){
+            if (yesNo){
+                starship.getCurrentLocation().clearAstronauts();
+                starship.getCurrentLocation().setTileWithFacing(Tile.NOTHING);
+                starship.getCurrentLocation().setTileLeft(Tile.ASTRO);
+                starship.getCurrentLocation().setTileRight(Tile.ASTRO);
+                starship.getCurrentLocation().setTileDown(Tile.ASTRO);
+                starship.getCurrentLocation().posUpdate();
+                System.out.println("Astronaut: HEY! WHAT ARE YOU DOING TO THE FLAG!");
+                System.out.println("You grab the Flag, but the nearby astronauts surround you!");
+                System.out.println("You get thrown to the floor and they start kicking you.");
+                System.out.println("You finally manage to eek out an explanation... and they stop.");
+                starship.addItem("Flag");
+                output.setHitsMessage();
+                System.out.println("The astronauts pummel you for 30 damage.");
+                System.out.println("Those guys were pretty ripped, gotta preserve muscle density!");
+                starship.takenDamage(30);
+            }
+            else {
+                System.out.println("The astronauts go back to drinking...");
             }
         }
 

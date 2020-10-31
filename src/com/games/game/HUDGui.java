@@ -39,6 +39,8 @@ public class HUDGui extends JPanel {
 //        else {
 //            this.map = new JLabel(starship.getCurrentLocation().getName());
 //        }
+        //color
+        hudPanel.setBackground(Color.ORANGE);
         hudPanel.add(this.map);
         //health
         hudPanel.add(currentHealth);

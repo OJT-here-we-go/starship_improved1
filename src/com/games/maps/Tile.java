@@ -13,22 +13,32 @@ public enum Tile {
     WATER('~'),
     KEY('!'),
     DOOR('/'),
-    ELON('e'),
-    //FOOD('f'),
-    A12('X'),
+    FUEL('D'),
 
 
+    //venus
     LAVARIVER('*'),
+    VENUS9('9'),
+    VENUS8('8'),
 
     //earth
     CHEF('C'),
     ROD('r'),
     GRIMES('G'),
     ART('$'),
-
     FRIENDLY('f'),
     GOLD('g'),
-    TREASURE('m'),
+
+    //moon
+    ELON('e'),
+    A12('X'),
+    MINED('m'),
+    MINER('M'),
+    ENGINEER('E'),
+    TREE('T'),
+    WITHERED('t'),
+    ICE('I'),
+    ORE('o'),
 
 
     PLUS('+'),
@@ -39,17 +49,15 @@ public enum Tile {
     COINTOSS('c'),
     VENDOR('V'),
     BLACKJACK('&'),
+    ASTRO('a'),
 
     A('A'),
     B('B'),
-    D('D'),
-    E('E'),
-    G('G'),
     H('H'),
-    I('I'),
+
     J('J'),
     K('K'),
-    M('M'),
+
     N('N'),
     O('O'),
     P('P'),
