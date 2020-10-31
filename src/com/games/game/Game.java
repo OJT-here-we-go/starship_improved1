@@ -39,6 +39,7 @@ public class Game {
     TextParser parser;
 
     Sound sound = new Sound();
+
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -427,8 +428,10 @@ public class Game {
     // this can be put in the main to load windows on same process rather than what first group did
     public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
-        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-        BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
+        sound.playSound(sound.getBackgroundSound());
+        //String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
+        //BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
+
 
         while(isRunning) {
             long startTime = System.nanoTime();

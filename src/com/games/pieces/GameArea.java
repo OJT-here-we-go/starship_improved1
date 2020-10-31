@@ -228,7 +228,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
             panel.write('@', spx, spy, Color.cyan, Color.black);
         }
         else if ((spx >= 0 && spx < gameScreenRec.width) && (spy >= 0 && spy < gameScreenRec.height) && hitsIndicator > 0) {
-            sound.playSound();
+            sound.playSound(sound.getCrashSound());
             panel.write('@', spx, spy, Color.red, Color.black);
         }
         this.output.setDefaultSysOut();

@@ -1,3 +1,4 @@
+/*
 package com.games.pieces;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
 
     public class BackgroundMusic {
 
-        public static void playBGM(String musicSource, VolumeSlider slider) {  //CURRENTLY STATIC (no object necessary to play music)
+        public static void playBGM(String musicSource, SoundControl slider) {  //CURRENTLY STATIC (no object necessary to play music)
             // InputStream BGM;
             try {
                 File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
@@ -68,3 +69,4 @@ import javax.swing.JOptionPane;
 }
 
 
+*/
