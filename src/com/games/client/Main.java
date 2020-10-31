@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException, LineUnavailableException {
+    public static void main(String[] args) throws InterruptedException, IOException, LineUnavailableException {
 //        start the game here
 
         System.out.println("Welcome to Starship");

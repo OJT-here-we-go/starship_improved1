@@ -50,6 +50,7 @@ public class VolumeSlider {
             volumeLevel = volSlider.getValue();
             String stringValue = Integer.toString(volumeLevel);
             label.setText(stringValue);
+//            BackgroundMusic.playBGM();
         }
     }
 

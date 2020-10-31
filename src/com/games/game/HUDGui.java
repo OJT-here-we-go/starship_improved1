@@ -20,7 +20,7 @@ public class HUDGui extends JPanel {
     private JLabel currentHealth = new JLabel("Current health:");
     private JLabel health;
     private JLabel currentPowerUps = new JLabel("Inventory:");
-    private JLabel powerUps;
+    private JTextArea inventory;
     private JLabel enemiesDefeated = new JLabel("Enemies Defeated:");
     private JLabel defeated;
     // initialize table
@@ -32,6 +32,7 @@ public class HUDGui extends JPanel {
         this.hudPanel = new JPanel();
 
         this.hudPanel.setLayout(new BoxLayout(hudPanel, BoxLayout.PAGE_AXIS));
+//        this.hudPanel.setSize(30,100);
         //map
         hudPanel.add(currentMap);
         this.map = new JLabel("Space");
@@ -45,13 +46,19 @@ public class HUDGui extends JPanel {
         this.health = new JLabel(Integer.toString(starship.getHealth()));
         hudPanel.add(this.health);
         //power ups
-        hudPanel.add(currentPowerUps);
-        this.powerUps = new JLabel(player.getInventory().toString()); //NEED TO MAKE THE TO STRING
-        hudPanel.add(this.powerUps);
+
+
         //enemies defeated
         hudPanel.add(enemiesDefeated);
         this.defeated = new JLabel(Integer.toString(starship.getEnemiesDefeated()));
         hudPanel.add(defeated);
+        hudPanel.add(currentPowerUps);
+        this.inventory = new JTextArea(10,1); //NEED TO MAKE THE TO STRING
+//        this.inventory.setSize(new Dimension(10,30));
+        this.inventory.setLineWrap(true);
+        this.inventory.setWrapStyleWord(true);
+        this.inventory.setEditable(false);
+        hudPanel.add(this.inventory);
 
 //        //jscroll panel
 //        JScrollPane msgDisplay = new JScrollPane();
@@ -95,7 +102,7 @@ public class HUDGui extends JPanel {
     }
 
     public void updatePowerUps() {
-        this.powerUps.setText(starship.getInventory().toString());
+        this.inventory.setText(starship.getInventory().toString());
     }
 
     public void updateEnemiesDefeated() {
