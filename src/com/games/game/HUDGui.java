@@ -7,33 +7,38 @@ import com.games.pieces.Starship;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class HUDGui extends JPanel {
     private Starship starship;
     private Player player;
-    private Output output;
+    //private OutputGui output;
     private JPanel hudPanel;
     private JLabel currentMap = new JLabel("Current Map:");
     private JLabel map;
     private JLabel currentHealth = new JLabel("Current health:");
     private JLabel health;
-    private JLabel currentPowerUps = new JLabel("Current Power Ups:");
+    private JLabel currentPowerUps = new JLabel("Inventory:");
     private JLabel powerUps;
     private JLabel enemiesDefeated = new JLabel("Enemies Defeated:");
     private JLabel defeated;
     // initialize table
 
 
-    public HUDGui(GameArea parentWindow, Starship starship, Player player, Output output) {
+    public HUDGui(Starship starship, Player player) {
         this.starship = starship;
         this.player = player;
-        this.output = output;
         this.hudPanel = new JPanel();
 
         this.hudPanel.setLayout(new BoxLayout(hudPanel, BoxLayout.PAGE_AXIS));
         //map
         hudPanel.add(currentMap);
-        this.map = new JLabel(starship.getCurrentLocation().getName());
+        this.map = new JLabel("Space");
+
+//        else {
+//            this.map = new JLabel(starship.getCurrentLocation().getName());
+//        }
         hudPanel.add(this.map);
         //health
         hudPanel.add(currentHealth);
@@ -45,32 +50,63 @@ public class HUDGui extends JPanel {
         hudPanel.add(this.powerUps);
         //enemies defeated
         hudPanel.add(enemiesDefeated);
-        this.defeated = new JLabel("placeholder, need to fill");
+        this.defeated = new JLabel(Integer.toString(starship.getEnemiesDefeated()));
         hudPanel.add(defeated);
 
-        //jscroll panel
-        JScrollPane msgDisplay = new JScrollPane();
+//        //jscroll panel
+//        JScrollPane msgDisplay = new JScrollPane();
 
 
-        parentWindow.getContentPane().add(hudPanel, BorderLayout.LINE_END);
-        parentWindow.revalidate();
-        parentWindow.repaint();
+//        parentWindow.getContentPane().add(hudPanel, BorderLayout.LINE_END);
+//        parentWindow.revalidate();
+//        parentWindow.repaint();
     }
 
-    public void display(Planet currentLocation) {
-        System.out.println("++---------------------------++-----------------------------++-------------------------------------++");
-        System.out.println("||  Player inventory: " + player.getInventory() +"     ||    Starship health: " + starship.getHealth() + "     ||    Fuel level: " + starship.getFuel() + "                  ||");
-        System.out.println("++---------------------------++-----------------------------++-------------------------------------++");
-        System.out.println("+----------------------------++-----------------------------++-------------------------------------++");
-        System.out.println("||  Current location: " + currentLocation.getName() + "  ||          HAL 9000           ||  Directions: left, right, up, down  ||" );
-        System.out.println("||                           ||            ((0))            ++-------------------------------------||");
-        System.out.print("||                           ||     ");
-        System.out.print(output.getPrompt1());
-        System.out.println("  ||      "+ output.getprompt2() + "     ||");
-        System.out.println("||---------------------------++-----------------------------++-------------------------------------++");
-        System.out.println("++---------------------------++--------------------------------------------------------------------++");
-        System.out.println("||  Controls: go, take, use  ||  Resources found:" + currentLocation.getResources() + "                                     ||");
-        System.out.println("++---------------------------++--------------------------------------------------------------------++");
+//    public void display(Planet currentLocation) {
+//        System.out.println("++---------------------------++-----------------------------++-------------------------------------++");
+//        System.out.println("||  Player inventory: " + player.getInventory() +"     ||    Starship health: " + starship.getHealth() + "     ||    Fuel level: " + starship.getFuel() + "                  ||");
+//        System.out.println("++---------------------------++-----------------------------++-------------------------------------++");
+//        System.out.println("+----------------------------++-----------------------------++-------------------------------------++");
+//        System.out.println("||  Current location: " + currentLocation.getName() + "  ||          HAL 9000           ||  Directions: left, right, up, down  ||" );
+//        System.out.println("||                           ||            ((0))            ++-------------------------------------||");
+//        System.out.print("||                           ||     ");
+//        System.out.print(output.getPrompt1());
+//        System.out.println("  ||      "+ output.getprompt2() + "     ||");
+//        System.out.println("||---------------------------++-----------------------------++-------------------------------------++");
+//        System.out.println("++---------------------------++--------------------------------------------------------------------++");
+//        System.out.println("||  Controls: go, take, use  ||  Resources found:" + currentLocation.getResources() + "                                     ||");
+//        System.out.println("++---------------------------++--------------------------------------------------------------------++");
+//    }
+    //methods
+
+
+
+    //setters for labels
+    public void updateMap(String planet){
+        this.map.setText(planet);
+    }
+
+    public void updateMapSpace() {
+        this.map.setText("Space");
+    }
+
+    public void updateHealth(){
+        this.health.setText(Integer.toString(starship.getHealth()));
+    }
+
+    public void updatePowerUps() {
+        this.powerUps.setText(starship.getInventory().toString());
+    }
+
+    public void updateEnemiesDefeated() {
+        this.defeated.setText(Integer.toString(starship.getEnemiesDefeated()));
+    }
+
+
+
+    //getter
+    public JPanel getHudPanel(){
+        return hudPanel;
     }
 
     public static void prompt1(String prompt1) {
@@ -97,11 +133,11 @@ public class HUDGui extends JPanel {
         this.player = player;
     }
 
-    public Output getOutput() {
-        return output;
-    }
-
-    public void setOutput(Output output) {
-        this.output = output;
-    }
+//    public Output getOutput() {
+//        return output;
+//    }
+//
+//    public void setOutput(Output output) {
+//        this.output = output;
+//    }
 }

@@ -26,7 +26,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     public GamePanel() {
         player = new Rocket(60, 250, this);
-        //start the game, orrr restart it
+        //start the game, or restart it
         reset();
 
         gameTimer = new Timer();

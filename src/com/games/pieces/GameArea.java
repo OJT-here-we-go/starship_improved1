@@ -1,11 +1,14 @@
 package com.games.pieces;
 
 import asciiPanel.AsciiPanel;
+import com.games.game.HUDGui;
+import com.games.game.OutputGui;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.List;
 
@@ -22,17 +25,31 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     private int updateMonsters;
     private int updateAttacks;
     private int hitsIndicator;
-    public GameArea(Rectangle gameAreaRec, Rectangle mapAreaRec) {
+
+    private Starship starship;
+    private Player player;
+    private OutputGui output;
+    private HUDGui hud;
+    private Sound sound;
+
+
+    public GameArea(Rectangle gameAreaRec, Starship starship, Player player, HUDGui hud, OutputGui output, Sound sound) {
+        this.starship = starship;
+        this.player = player;
+        this.output = output;
+        this.hud =  hud;
+        this.sound = sound;
         gameScreenRec = gameAreaRec;
         inputQueue = new LinkedList<>();
         panel = new AsciiPanel(this.gameScreenRec.width, this.gameScreenRec.height);
         super.setLayout(new BorderLayout());
-        super.getContentPane().add(panel,BorderLayout.LINE_START);
+        super.getContentPane().add(panel,BorderLayout.CENTER);
         super.addKeyListener(this);
         super.addMouseListener(this);
-        super.setSize(this.gameScreenRec.width*12, this.gameScreenRec.height*17);
-        super.setVisible(true);
+        super.setSize(this.gameScreenRec.width*12, this.gameScreenRec.height*23);
+        super.setVisible(false);
         super.setResizable(false);
+        super.setLocationRelativeTo((Component)null);
 
         super.setTitle("Starship");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,13 +58,22 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         // instantiate aliens through method call
         drawAliens();
         drawPlanets();
+        super.getContentPane().add(hud.getHudPanel(), BorderLayout.LINE_END);
+        super.getContentPane().add(output.getOutputPanel(), BorderLayout.SOUTH);
+
+
         super.repaint();
+        super.revalidate();
         super.setFocusable(true);
         super.requestFocus();
 
         //put another panel in here in the constructor and take inputs from the HUD
 
 
+    }
+
+    public AsciiPanel getAsciiPanel() {
+        return panel;
     }
 
     // distance from x and y to begin writing/printing from
@@ -57,7 +83,8 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         return new Point(spx, spy);
     }
 
-    public void pointCameraAt(Starship player1, int xfocus, int yfocus) {
+    public void pointCameraAt(Starship player1, int xfocus, int yfocus) throws FileNotFoundException, LineUnavailableException {
+        this.output.setHitsMessage();
         int spx;
         int spy;
 
@@ -180,9 +207,12 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         for(Planet planet: bodies) {
             if(player1.getxPos() == planet.getX() && player1.getyPos() == planet.getY()) {
                 player1.setCurrentLocation(planet);
-                player1.setInSpace(false);
+                this.hud.updateMap(planet.getName());
+                //player1.setInSpace(false);
+                break;
             } else {
-                player1.setInSpace(true);
+                this.hud.updateMapSpace();
+//                player1.setInSpace(true);
             }
         }
 
@@ -198,8 +228,13 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
             panel.write('@', spx, spy, Color.cyan, Color.black);
         }
         else if ((spx >= 0 && spx < gameScreenRec.width) && (spy >= 0 && spy < gameScreenRec.height) && hitsIndicator > 0) {
+            sound.playSound(sound.getCrashSound());
             panel.write('@', spx, spy, Color.red, Color.black);
         }
+        this.output.setDefaultSysOut();
+        hud.updateHealth();
+        hud.updatePowerUps();
+        hud.updateEnemiesDefeated();
     }
 
     public void drawAsteroids() {
@@ -211,13 +246,13 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     }
 
     public void floatAsteroids() {
-            for(Asteroid asteroid: asteroids) {
-                asteroid.setX(asteroid.getX()-1);
-                if(asteroid.getX() == (0)) {
-                    asteroid.setX(79);
-                }
+        for(Asteroid asteroid: asteroids) {
+            asteroid.setX(asteroid.getX()-1);
+            if(asteroid.getX() == (0)) {
+                asteroid.setX(79);
             }
-            updateMonsters = 0;
+        }
+        updateMonsters = 0;
     }
 
     public void drawAliens() {
@@ -265,15 +300,25 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
 
     // place the planets on the board here
     public void drawPlanets() {
-        bodies.add(new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.cyan, 'E'));
-        bodies.add(new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm'));
-        bodies.add(new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.pink, 'V'));
-        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M'));
-        bodies.add(new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M'));
+        bodies.add(new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16, Color.cyan, 'E',starship));
+        bodies.add(new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship));
+        bodies.add(new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6, 20, Color.pink, 'V',starship));
+        bodies.add(new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship));
+        bodies.add(new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship));
     }
 
     // remove monster if they were shot by me
     public void monsterShot(Weapon bullet){
+        for (Alien alien : aliens) {
+            if (alien.getX() == bullet.getX() && alien.getY() == bullet.getY()) {
+                starship.addDefeated();
+            }
+        }
+        for (Asteroid asteroid : asteroids) {
+            if (asteroid.getX() == bullet.getX() && asteroid.getY() == bullet.getY()) {
+                starship.addDefeated();
+            }
+        }
         aliens.removeIf(alien -> alien.getX() == bullet.getX() && alien.getY() == bullet.getY());
         asteroids.removeIf(asteroid -> asteroid.getX() == bullet.getX() && asteroid.getY() == bullet.getY());
     }
@@ -328,6 +373,15 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         panel.repaint();
     }
 
+    //getters
+    public HUDGui getHud(){
+        return hud;
+    }
+
+    public OutputGui getOutput(){
+        return output;
+    }
+
     @Override
     public void keyReleased(KeyEvent e) {}
 
@@ -346,7 +400,9 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        super.requestFocus();
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {}

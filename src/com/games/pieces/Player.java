@@ -18,7 +18,7 @@ public class Player {
 
 
     public Player(char playerChar, Color playerColor, int startPositionX, int startPositionY) {
-        setName();
+        //setName();
         setPlayerChar(playerChar);
         setPlayerColor(playerColor);
         setPlayerPositionX(startPositionX);
@@ -68,15 +68,15 @@ public class Player {
         inventory.clear();
     }
 
-    public String getName() {
-        return name;
-    }
+//    public String getName() {
+//        return name;
+//    }
 
-    public void setName() {
-        Output.askName();
-        Scanner input = new Scanner(System.in);
-        this.name = input.nextLine();
-    }
+//    public void setName() {
+//        Output.askName();
+//        Scanner input = new Scanner(System.in);
+//        this.name = input.nextLine();
+//    }
     public String getItemToGrab() {
         return itemToGrab;
     }
