@@ -1,13 +1,12 @@
 package com.games.game;
 
 import com.games.maps.MapPanelGenerator;
-import com.games.maps.Tile;
 import com.games.pieces.*;
 //import com.games.pieces.Planet;
 //import com.games.pieces.Player;
 //import com.games.pieces.Starship;
 
-import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -15,8 +14,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 import java.util.Random;
 
@@ -29,10 +28,6 @@ public class Game {
     Planet venus;
 //    Planet mercury;
     Planet mars;
-//    Planet mars1;
-//    Planet mars2;
-//    Planet mars3;
-//    Planet marsWin;
     Planet obstacle1;
     Planet obstacle2;
     ArrayList<Planet> planets = new ArrayList<>();
@@ -56,6 +51,7 @@ public class Game {
     private static final int mapHeight = 100;
     private int framesPerSecond = 60;
     private int timePerLoop = 1000000000 / framesPerSecond;
+    private boolean isPlaying = false;
 
     //private static final int HEIGHT = 10;
 //   private static final int WIDTH = 10;
@@ -64,50 +60,50 @@ public class Game {
         this.parentWindow = new JFrame();
     }
 
-//    public HashMap<String, HashMap<String, String>> drawGame() {
-//// Earths neighbors
-//        HashMap<String, String> earthNeighbors = new HashMap<>();
-//
-//        earthNeighbors.put("right", "Moon");
-//        space.put("Earth", earthNeighbors);
-//// Moon neighbors
-//        HashMap<String, String> moonNeighbors = new HashMap<>();
-//
-//        moonNeighbors.put("left", "Earth");
-//        moonNeighbors.put("up", "Venus");
-//        space.put("Moon", moonNeighbors);
-//// Venus
-//        HashMap<String, String> venusNeighbors = new HashMap<>();
-//
-//        venusNeighbors.put("down", "Moon");
-//        venusNeighbors.put("up", "Mercury");
-//        space.put("Venus", venusNeighbors);
-//// Mercury neighbors
-//        HashMap<String, String> mercuryNeighbors = new HashMap<>();
-//
-//        mercuryNeighbors.put("down", "Venus");
-//        mercuryNeighbors.put("left", "Asteroids1");
-//        space.put("Mercury", mercuryNeighbors);
-//// Asteroids1 neighbors
-//        HashMap<String, String> asteroid1Neighbors = new HashMap<>();
-//
-//        asteroid1Neighbors.put("right", "Mercury");
-//        asteroid1Neighbors.put("up", "Aliens1");
-//        space.put("Asteroids1", asteroid1Neighbors);
-//// aliens
-//        HashMap<String, String> alien1Neighbors = new HashMap<>();
-//
-//        alien1Neighbors.put("down", "Asteroids1");
-//        alien1Neighbors.put("up", "Mars");
-//        space.put("Aliens1", alien1Neighbors);
-//// Mars
-//        HashMap<String, String> marsNeighbors = new HashMap<>();
-//
-//        marsNeighbors.put("down", "Aliens1");
-//        space.put("Mars", marsNeighbors);
-//
-//        return space;
-//    }
+    public HashMap<String, HashMap<String, String>> drawGame() {
+// Earths neighbors
+        HashMap<String, String> earthNeighbors = new HashMap<>();
+
+        earthNeighbors.put("right", "Moon");
+        space.put("Earth", earthNeighbors);
+// Moon neighbors
+        HashMap<String, String> moonNeighbors = new HashMap<>();
+
+        moonNeighbors.put("left", "Earth");
+        moonNeighbors.put("up", "Venus");
+        space.put("Moon", moonNeighbors);
+// Venus
+        HashMap<String, String> venusNeighbors = new HashMap<>();
+
+        venusNeighbors.put("down", "Moon");
+        venusNeighbors.put("up", "Mercury");
+        space.put("Venus", venusNeighbors);
+// Mercury neighbors
+        HashMap<String, String> mercuryNeighbors = new HashMap<>();
+
+        mercuryNeighbors.put("down", "Venus");
+        mercuryNeighbors.put("left", "Asteroids1");
+        space.put("Mercury", mercuryNeighbors);
+// Asteroids1 neighbors
+        HashMap<String, String> asteroid1Neighbors = new HashMap<>();
+
+        asteroid1Neighbors.put("right", "Mercury");
+        asteroid1Neighbors.put("up", "Aliens1");
+        space.put("Asteroids1", asteroid1Neighbors);
+// aliens
+        HashMap<String, String> alien1Neighbors = new HashMap<>();
+
+        alien1Neighbors.put("down", "Asteroids1");
+        alien1Neighbors.put("up", "Mars");
+        space.put("Aliens1", alien1Neighbors);
+// Mars
+        HashMap<String, String> marsNeighbors = new HashMap<>();
+
+        marsNeighbors.put("down", "Aliens1");
+        space.put("Mars", marsNeighbors);
+
+        return space;
+    }
 
 //  Business Methods
 
@@ -125,22 +121,21 @@ public class Game {
 
 
 
-    public void begin(int screenWidth, int screenHeight) throws InterruptedException, IOException, LineUnavailableException {
+    public void begin(int screenWidth, int screenHeight) throws InterruptedException, FileNotFoundException, LineUnavailableException {
 
         this.player1 = new Player('@', Color.cyan, 8, 16);
-        this.starship = new Starship(earth, 8, 16,sound);
+        this.starship = new Starship(earth, 8, 16);
 //        this is where they set positions for all the planets... hmmm but its not really used?
         this.earth = new Planet("Earth", new ArrayList<>(Arrays.asList("water", "food")), 10, 16,
-                Color.blue, 'E',starship,"");
-        this.moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship,"");
+                Color.blue, 'E',starship);
+        this.moon = new Planet("Moon", new ArrayList<>(Arrays.asList("fuel", "Elon Musk", "weapon")), 13, 11, Color.LIGHT_GRAY, 'm',starship);
         this.venus = new Planet("Venus", new ArrayList<>(Arrays.asList("fuel", "scrap metal")), 6
-                , 20, Color.magenta, 'V',starship,"");
+                , 20, Color.magenta, 'V',starship);
 //        this.mercury = new Planet("Mercury", new ArrayList<>(Arrays.asList("super laser", "shield")), 4, 22, Color.yellow, 'M',starship);
         this.obstacle1 = new Planet("Asteroids1", new ArrayList<>(Arrays.asList("speed booster")),
                 starship);
         this.obstacle2 = new Planet("Aliens1", new ArrayList<>(Arrays.asList("bb gun")),starship);
-        this.mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship,"");
-
+        this.mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship);
         this.planets.add(earth);
         this.planets.add(moon);
         this.planets.add(venus);
@@ -169,17 +164,20 @@ public class Game {
         JFrame menu = new JFrame();
         JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
         JButton quitButton = new JButton("Quit Game");
+        JButton muteButton = new JButton("Mute Music");
         playButton.setPreferredSize(new Dimension(100, 80));
         quitButton.setSize(new Dimension(60, 60));
         playButton.setContentAreaFilled(false);
         playButton.setBorderPainted(false);
         playButton.setActionCommand("play");
         quitButton.setActionCommand("quit");
+        muteButton.setActionCommand("mute");
+
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
-        menu.add(quitButton, "Last");
+        //menu.add(quitButton, "Last");
+        menu.add(muteButton, BorderLayout.SOUTH );
         menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
-//        menu.add(BackgroundMusic.bgmSlider.getSliderPanel());
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
 
@@ -187,6 +185,16 @@ public class Game {
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
+        muteButton.addActionListener((e -> {
+            if(e.getActionCommand().equals("mute")){
+                isPlaying = false;
+                System.out.println("no music should play");
+            } else {
+                isPlaying = true;
+                System.out.println("music is playing");
+            }
+        }));
+
         playButton.addActionListener((e) -> {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
@@ -221,7 +229,46 @@ public class Game {
                 this.level1);
     }
 
-    public void play(Player player, ArrayList<Planet> planets, ArrayList<Asteroid> asteroids, ArrayList<Alien> aliens, Starship starship, Level level) throws InterruptedException, IOException, LineUnavailableException {
+    public static void playBGM(String musicSource, VolumeSlider slider) {  //CURRENTLY STATIC (no object necessary to play music)
+        // InputStream BGM;
+        try {
+            File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
+            if(musicPath.exists()){
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn); //Open and Load passed in file
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                //float volumeNum = slider.getVolumeLevel();
+                gainControl.setValue(slider.getVolumeInt()/10-2); //slider.getVolumeLevel()-50  -80-6.026
+                clip.start(); //Play file from beginning
+                clip.loop(Clip.LOOP_CONTINUOUSLY);  //Loop until "OK" click
+
+                //TODO PLAY PAUSE VOLUME
+
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to pause");
+//                long clipTimePosition = clip.getMicrosecondPosition();
+//                clip.stop(); //Stop clip and save TimePosition
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to resume");
+//                clip.setMicrosecondPosition(clipTimePosition);
+//                clip.start(); //Resume clip from Time Position
+//                clip.loop(Clip.LOOP_CONTINUOUSLY); //Resume Loop
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to stop music"); //INTERRUPTS AUTOMATIC CLIP THREAD DEATH and allows user to control Sound Stop
+
+            } else {
+                System.out.printf("\nERROR!! Music file \"%s\" not found\n", musicPath);
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
+
+    public void play(Player player, ArrayList<Planet> planets, ArrayList<Asteroid> asteroids, ArrayList<Alien> aliens, Starship starship, Level level) throws InterruptedException, FileNotFoundException, LineUnavailableException {
 //        output.introNarrative(player);
         String initialThoughts = "Welcome to Starship.";
         HUDGui var10000 = this.hud;
@@ -248,7 +295,7 @@ public class Game {
 //        }
     }
 
-    public void restart() throws InterruptedException, IOException, LineUnavailableException {
+    public void restart() throws InterruptedException, FileNotFoundException, LineUnavailableException {
         player1.clearInventory();
         starship.setHealth(starship.getHealth() + (100 - starship.getHealth()));
         starship.setFuel(starship.getFuel() + (100 - starship.getFuel()));
@@ -259,7 +306,7 @@ public class Game {
         play(player1, planets, asteroids, aliens, starship, level1);
     }
 
-    public void restartOrClose() throws InterruptedException, IOException, LineUnavailableException {
+    public void restartOrClose() throws InterruptedException, FileNotFoundException, LineUnavailableException {
         if(startOverPrompt()){
             this.restart();
         }
@@ -382,7 +429,7 @@ public class Game {
         gameArea.refresh();
     }
 
-    public void processInputPlanet() throws FileNotFoundException, LineUnavailableException {
+    public void processInputPlanet() {
         InputEvent event = gameArea.getNextInput();
         if (event instanceof KeyEvent) {
             KeyEvent keyPress = (KeyEvent)event;
@@ -411,47 +458,9 @@ public class Game {
                     //wonky here, decisionTree returns a boolean, and if true... return to space...
                     //if false, just do whatever else decisionTree would regularly do
                     if (InteractionsUtil.decisionTree(starship, output,true)) {
-                        if (InteractionsUtil.interactable == Tile.MATERIALS) {
-                            System.out.println("got here");
-                            gameArea.getContentPane().remove(currentPanel);
-                            mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship,"1");
-                            starship.setCurrentLocation(mars);
-                            gameArea.drawUpdateMars(mars);
-                            currentPanel = new MapPanelGenerator(starship);
-                            gameArea.add(currentPanel);
-                        }
-                        else if (InteractionsUtil.interactable == Tile.WATERGEN) {
-                            System.out.println("got here");
-                            gameArea.getContentPane().remove(currentPanel);
-                            mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship,"2");
-                            starship.setCurrentLocation(mars);
-                            gameArea.drawUpdateMars(mars);
-                            currentPanel = new MapPanelGenerator(starship);
-                            gameArea.add(currentPanel);
-                        }
-                        else if (InteractionsUtil.interactable == Tile.STOCKPILE) {
-                            System.out.println("got here");
-                            gameArea.getContentPane().remove(currentPanel);
-                            mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship,"3");
-                            starship.setCurrentLocation(mars);
-                            gameArea.drawUpdateMars(mars);
-                            currentPanel = new MapPanelGenerator(starship);
-                            gameArea.add(currentPanel);
-                        }
-                        else if (InteractionsUtil.interactable == Tile.RELIC) {
-                            System.out.println("got here");
-                            gameArea.getContentPane().remove(currentPanel);
-                            mars = new Planet("Mars", new ArrayList<>(), 70, 3, Color.orange, 'M',starship,"Win");
-                            starship.setCurrentLocation(mars);
-                            gameArea.drawUpdateMars(mars);
-                            currentPanel = new MapPanelGenerator(starship);
-                            gameArea.add(currentPanel);
-                        }
-                        else {
-                            gameArea.getContentPane().remove(currentPanel);
-                            gameArea.getContentPane().add(gameArea.getAsciiPanel());
-                            starship.inSpace = true;
-                        }
+                        gameArea.getContentPane().remove(currentPanel);
+                        gameArea.getContentPane().add(gameArea.getAsciiPanel());
+                        starship.inSpace = true;
                         gameArea.requestFocus();
                         gameArea.revalidate();
                         gameArea.repaint();
@@ -482,12 +491,10 @@ public class Game {
     // load the JFrame window
 
     // this can be put in the main to load windows on same process rather than what first group did
-    public void run() throws IOException, LineUnavailableException {
+    public void run() throws FileNotFoundException, LineUnavailableException {
         isRunning = true;
-        sound.playSound(sound.getBackgroundSound());
-//        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
-//        float volumeLevel = sound.getSlider().getVolumeInt();
-        //BackgroundMusic.playBGM(sound.getSlider()); //CALL BGM WITH DEFAULT
+        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
+        BackgroundMusic.playBGM(filepath, sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();
