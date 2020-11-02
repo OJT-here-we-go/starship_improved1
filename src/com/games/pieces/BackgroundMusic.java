@@ -28,7 +28,10 @@ import javax.swing.JOptionPane;
             }
         }
 
-        public static void playBGM(VolumeSlider slider) throws IOException, LineUnavailableException {  //CURRENTLY STATIC (no object necessary to play music)
+        public static void stopBGM() {
+            clip.stop();
+        }
+        public static void playBGM() throws IOException, LineUnavailableException {  //CURRENTLY STATIC (no object necessary to play music)
             // InputStream BGM;
             try {
 //                File musicPath = new File(filepath);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
@@ -36,7 +39,8 @@ import javax.swing.JOptionPane;
                     clip.open(audioIn); //Open and Load passed in file
                     FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                     //float volumeNum = slider.getVolumeLevel();
-                    gainControl.setValue(slider.getVolumeInt()/10-2); //slider.getVolumeLevel()-50  -80-6.026
+                    //gainControl.setValue(slider.getVolumeInt()/10-2); //slider.getVolumeLevel()
+                // -50  -80-6.026
                     clip.start(); //Play file from beginning
                     clip.loop(Clip.LOOP_CONTINUOUSLY);  //Loop until "OK" click
 

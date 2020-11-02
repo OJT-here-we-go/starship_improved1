@@ -14,6 +14,7 @@ public class Sound {
     public void playSound() throws FileNotFoundException, LineUnavailableException {
         try {
             File inputFile = new File(String.valueOf(Path.of("Sound","beep-07.wav")));
+            File BGMFile = new File(String.valueOf(Path.of("Sound", "./Sound/StarshipBGM16.wav")));
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);
@@ -24,6 +25,20 @@ public class Sound {
         }
     }
 
+    public Sound playBGMSound() throws FileNotFoundException, LineUnavailableException {
+        try {
+
+            File BGMFile = new File(String.valueOf(Path.of("Sound", "./StarshipBGM16.wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(BGMFile);
+            audioClip = AudioSystem.getClip();
+            audioClip.open(audioInputStream);
+            setVolume(slider, audioClip);
+            audioClip.start();
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {
         //audioClip.open(stream);
         FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -38,7 +53,6 @@ public class Sound {
     public JPanel getSoundSliderPanel() {
         return slider.getSliderPanel();
     }
-
 
 
     /*public void setVolume(VolumeSlider slider, Clip audioClip) throws IOException, LineUnavailableException {
