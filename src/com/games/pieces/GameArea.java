@@ -60,6 +60,7 @@ public class GameArea extends JFrame implements KeyListener, MouseListener{
         drawPlanets();
         super.getContentPane().add(hud.getHudPanel(), BorderLayout.LINE_END);
         super.getContentPane().add(output.getOutputPanel(), BorderLayout.SOUTH);
+        super.setBackground(Color.getHSBColor(22 ,39, 67));
 
 
         super.repaint();

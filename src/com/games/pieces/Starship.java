@@ -144,8 +144,15 @@ public class Starship {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public int setHealth(int health)   //Refactored to make testable and set valid health conditions
+            throws IllegalArgumentException {
+        if (health > 100 || health < 0) {
+            System.out.println("Unit Testing Health Cheat ON");
+            throw new IllegalArgumentException("Invalid Health: " + health + ". " + "Range: [0 - 100]");
+        } else {
+            this.health = health;
+            return getHealth();
+        }
     }
 
     public int getFuel() {
