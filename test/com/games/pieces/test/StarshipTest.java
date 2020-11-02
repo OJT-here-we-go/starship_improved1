@@ -21,7 +21,7 @@ public class StarshipTest {
         System.out.println("After Test Cleanup");
     }
 
-@Before
+    @Before
     public void init() {
         starship = new Starship(null, 8, 16, null);
     }
