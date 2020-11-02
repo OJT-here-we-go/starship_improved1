@@ -53,7 +53,7 @@ public class Starship {
     }
 
     public void takenDamage(int damage) throws FileNotFoundException, LineUnavailableException {
-        sound.playSound("beep-07.wav");
+        sound.playSound();
         setHealth(getHealth() - damage);
     }
 

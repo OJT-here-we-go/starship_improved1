@@ -7,7 +7,7 @@ import com.games.pieces.*;
 //import com.games.pieces.Player;
 //import com.games.pieces.Starship;
 
-import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -45,6 +45,7 @@ public class Game {
     TextParser parser;
 
     Sound sound = new Sound();
+    Sound BGM = new Sound().playBGMSound();
     private JFrame parentWindow;
     public static HashMap<String, HashMap<String, String>> space = new HashMap<>();
 
@@ -57,9 +58,11 @@ public class Game {
     private int framesPerSecond = 60;
     private int timePerLoop = 1000000000 / framesPerSecond;
 
+    private boolean isPlaying = false;
+
     //private static final int HEIGHT = 10;
 //   private static final int WIDTH = 10;
-    public Game() {
+    public Game() throws FileNotFoundException, LineUnavailableException {
         this.timePerLoop = 1000000000 / this.framesPerSecond;
         this.parentWindow = new JFrame();
     }
@@ -169,17 +172,22 @@ public class Game {
         JFrame menu = new JFrame();
         JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
         JButton quitButton = new JButton("Quit Game");
+        JButton BGMButton = new JButton("Play Background Music");
         playButton.setPreferredSize(new Dimension(100, 80));
         quitButton.setSize(new Dimension(60, 60));
         playButton.setContentAreaFilled(false);
         playButton.setBorderPainted(false);
         playButton.setActionCommand("play");
         quitButton.setActionCommand("quit");
+        BGMButton.setActionCommand("BGM");
+
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
-        menu.add(quitButton, "Last");
-        menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
-//        menu.add(BackgroundMusic.bgmSlider.getSliderPanel());
+        //menu.add(quitButton, "Last");
+        menu.add(BGMButton, BorderLayout.SOUTH );
+
+        //menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
+        //menu.add(BackgroundMusic.playBGM(sound.getSlider()));
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
 
@@ -187,6 +195,23 @@ public class Game {
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
+        BGMButton.addActionListener((e -> {
+            if(e.getActionCommand().equals("BGM")){
+                isPlaying = false;
+                try {
+                    BackgroundMusic.playBGM();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (LineUnavailableException lineUnavailableException) {
+                    lineUnavailableException.printStackTrace();
+                }
+                //System.out.println("no music should play");
+            } else {
+                isPlaying = true;
+                System.out.println("music is playing");
+            }
+        }));
+
         playButton.addActionListener((e) -> {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
@@ -194,6 +219,8 @@ public class Game {
                 menu.getContentPane().remove(sound.getSoundSliderPanel());
                 hud.getHudPanel().add(sound.getSoundSliderPanel(), BorderLayout.SOUTH);
                 gameArea.requestFocus();
+                BackgroundMusic.stopBGM();
+
             } else {
                 menu.setVisible(true);
             }
@@ -484,7 +511,6 @@ public class Game {
     // this can be put in the main to load windows on same process rather than what first group did
     public void run() throws IOException, LineUnavailableException {
         isRunning = true;
-        sound.playSound(sound.getBackgroundSound());
 //        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
 //        float volumeLevel = sound.getSlider().getVolumeInt();
         //BackgroundMusic.playBGM(sound.getSlider()); //CALL BGM WITH DEFAULT
