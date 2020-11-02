@@ -1,4 +1,4 @@
-package com.games.pieces.test;
+package com.games.pieces;
 
 import com.games.pieces.Player;
 import org.junit.Test;
