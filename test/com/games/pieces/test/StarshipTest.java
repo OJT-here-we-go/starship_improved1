@@ -21,10 +21,10 @@ public class StarshipTest {
         System.out.println("After Test Cleanup");
     }
 
-//    @Before
-////    public void init() {
-////        starship = new Starship(null, 8, 16);
-////    }
+@Before
+    public void init() {
+        starship = new Starship(null, 8, 16, null);
+    }
 
     //Positive Tests
     @Test
