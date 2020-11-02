@@ -10,16 +10,14 @@ public class FileReader {
 
     private static BufferedReader reader;
 
-    //READS .txt FILES CONTAINING ISLANDS
+    //READS .txt FILES CONTAINING Planets
     public static ArrayList<String> readMapFile(String filename) {
 
-        System.out.println("COMPONENT MANAGER CLASS: READING "+filename);
         ArrayList<String> strings = new ArrayList<String>();
-        System.out.println(filename);
         try{
             reader = new BufferedReader(new java.io.FileReader(filename));
         }catch (FileNotFoundException e) {
-            System.out.println("File MANAGER CLASS: [ERROR]: "+filename+" not found!");
+            System.out.println(filename+" not found!");
         }
         try {
             String str = reader.readLine();
@@ -30,7 +28,7 @@ public class FileReader {
                 strings.add(str);
             }
         }catch (IOException e) {
-            System.out.println("COMPONENTS MANAGER CLASS [ERROR]: IOException");
+            System.out.println("IOException");
         }
         return strings;
     }
