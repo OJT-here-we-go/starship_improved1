@@ -1,5 +1,7 @@
 package com.games.pieces;
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Starship {
@@ -16,11 +18,13 @@ public class Starship {
     public int planetXPos, planetYPos;
     private int enemiesDefeated;
     private Direction facing = Direction.DOWN;
+    public Sound sound;
 
-    public Starship(Planet currentLocation, int xPos, int yPos){
+    public Starship(Planet currentLocation, int xPos, int yPos, Sound sound){
         setCurrentLocation(currentLocation);
         setxPos(xPos);
         setyPos(yPos);
+        this.sound = sound;
     }
 
     // Business methods
@@ -48,7 +52,8 @@ public class Starship {
         }
     }
 
-    public void takenDamage(int damage){
+    public void takenDamage(int damage) throws FileNotFoundException, LineUnavailableException {
+        sound.playSound();
         setHealth(getHealth() - damage);
     }
 
@@ -139,8 +144,15 @@ public class Starship {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public int setHealth(int health)   //Refactored to make testable and set valid health conditions
+            throws IllegalArgumentException {
+        if (health > 100 || health < 0) {
+            System.out.println("Unit Testing Health Cheat ON");
+            throw new IllegalArgumentException("Invalid Health: " + health + ". " + "Range: [0 - 100]");
+        } else {
+            this.health = health;
+            return getHealth();
+        }
     }
 
     public int getFuel() {

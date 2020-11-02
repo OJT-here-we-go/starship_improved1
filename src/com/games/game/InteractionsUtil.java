@@ -1,17 +1,17 @@
 package com.games.game;
 
-import com.games.maps.MapPanelGenerator;
 import com.games.maps.Tile;
 import com.games.pieces.Direction;
 import com.games.pieces.Starship;
 
-import java.sql.SQLOutput;
+import javax.sound.sampled.LineUnavailableException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public final class InteractionsUtil {
-    private static Tile interactable;
+    public static Tile interactable;
     private static List<String> dialogFriendly = new ArrayList<>();
     private static List<String> astroFriendly = new ArrayList<>();
     private static Random rand = new Random();
@@ -93,7 +93,7 @@ public final class InteractionsUtil {
 //        return true;
 //    }
 
-    public static void playerHandler(OutputGui output, Starship starship, Direction d) {
+    public static void playerHandler(OutputGui output, Starship starship, Direction d) throws FileNotFoundException, LineUnavailableException {
 
         Tile tile = null;
 
@@ -286,27 +286,96 @@ public final class InteractionsUtil {
                 interactable = tile;
                 break;
             case LAVARIVER:
-                System.out.println("---------------------------------------------------------");
-                System.out.println("It's a river... of lava. Better not get too close to it.");
+                if (starship.getInventory().contains("Bucket")) {
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("Lower your lava bucket and draw some lava?");
+                    System.out.println("   [Y] Yes     [N] No");
+                    interactable = tile;
+                }
+                else {
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("It's a river... of lava... Pretty... Don't fall in!");
+                    interactable = Tile.NOTHING;
+                }
                 output.setHitsMessage();
                 System.out.println("Being near the heat hurts... you take 1 damage.");
                 starship.takenDamage(1);
-                interactable = Tile.NOTHING;
                 break;
 
             case VENUS9:
                 System.out.println("---------------------------------------------------------");
-                System.out.println("Venusian: Careful of the beautiful stars over there, it's a sparking hot lava river");
+                System.out.println("Venusian: Careful of the beautiful stars over there, it's a sparking hot lava river.");
+                System.out.println("Venusian: We use that lava to forge materials! Use the lava bucket!");
+                System.out.println("Venusian: It's in the shed... I lost the key somewhere...");
                 interactable = Tile.NOTHING;
                 break;
             case VENUS8:
                 System.out.println("---------------------------------------------------------");
-                System.out.println("Venusian: answer the riddle to ");
-                System.out.println("Venusian: Men are from Mars but Women are from _____\"?");
+                System.out.println("Venusian: Answer the riddle to receive the KEY!");
+                System.out.println("Venusian: Men are from Mars but Women are from Venus.");
+                System.out.println("   [Y] True     [N] False");
+                interactable = tile;
+                break;
+            case VENUS8DONE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Venusian: I would have given you the key either way.");
                 interactable = Tile.NOTHING;
                 break;
+            case FORGEDOOR:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("It's the door for the Venus Forge. You need the Forge Key.");
+                System.out.println("Use the Forge Key to open to door?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case FORGE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("It's the Venus Forge!");
+                System.out.println("Use lava to forge Materials for the Mars Colony?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case BUCKET:
+                System.out.println("---------------------------------------------------------");
+                starship.movePlanet(d);
+                starship.addItem("Bucket");
+                starship.getCurrentLocation().posUpdate();
+                System.out.println("You picked up a lava Bucket! Apparently this can contain Lava?");
+                break;
+            case MATERIALS:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("There's some debris strewn about here, but it looks good for construction!");
+                System.out.println("Use materials to construct Mars colony here?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case WATERGEN:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("Elon: I can start build an ice harvester to pipe in water for the colony!");
+                System.out.println("Use Elon Musk to provide water for the Mars Colony?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case STOCKPILE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("The Chef from To the Moon Cafe packed tons of rations and seeds!");
+                System.out.println("Use food rations to plant farms and create food stockpiles?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
 
-
+            case RELIC:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("The flag stand sits there eagerly awaiting the holy relic!");
+                System.out.println("Place the American flag on the flag stand?");
+                System.out.println("   [Y] Yes     [N] No");
+                interactable = tile;
+                break;
+            case FOODPILE:
+                System.out.println("---------------------------------------------------------");
+                System.out.println("It's a stockpile of food from the trees you're growing!");
+                interactable = Tile.NOTHING;
+                break;
             default:
                 output.setHitsMessage();
                 System.out.println("---------------------------------------------------------");
@@ -316,7 +385,7 @@ public final class InteractionsUtil {
         output.setDefaultSysOut();
     }
 
-    public static boolean decisionTree(Starship starship, OutputGui output, boolean yesNo) {
+    public static boolean decisionTree(Starship starship, OutputGui output, boolean yesNo) throws FileNotFoundException, LineUnavailableException {
         output.setPlayerMessage();
         System.out.println("---------------------------------------------------------");
         if (interactable == Tile.SPACEDOCK) {
@@ -459,6 +528,138 @@ public final class InteractionsUtil {
             }
             else {
                 System.out.println("The astronauts go back to drinking...");
+            }
+        }
+        else if (interactable == Tile.VENUS8){
+            if (yesNo){
+                System.out.println("Venusian: Technically true, but there are also male Venusians dummy.");
+            }
+            else {
+                System.out.println("Venusian: Bruh... That's right. Men and women are from everywhere.");
+            }
+            System.out.println("Venusian: Here's the key!");
+            starship.addItem("Forge Key");
+            starship.getCurrentLocation().setTileWithFacing(Tile.VENUS8DONE);
+        }
+        else if (interactable == Tile.LAVARIVER){
+            if (yesNo){
+                System.out.println("You draw up some lava! You can't believe you didn't take extra damage!");
+                starship.removeItem("Bucket");
+                starship.addItem("Bucket of Lava");
+            }
+            else {
+                System.out.println("It's too scary, you decide not to do it... Humanity is doomed.");
+            }
+        }
+        else if (interactable == Tile.FORGEDOOR){
+            if (yesNo){
+                if (starship.getInventory().contains("Forge Key")) {
+                    System.out.println("You use your Forge Key to unlock the door!");
+                    starship.removeItem("Forge Key");
+                    starship.getCurrentLocation().setTileWithFacing(Tile.NOTHING);
+                }
+                else {
+                    System.out.println("You don't have the Forge Key!");
+                }
+            }
+            else {
+                System.out.println("Guess this door will remain forever closed...");
+            }
+        }
+        else if (interactable == Tile.FORGE){
+            if (yesNo){
+                if (starship.getInventory().contains("Bucket of Lava")) {
+                    System.out.println("You use the heat from the lava river to mold the... lava... IT MAKES SENSE SHHH.");
+                    System.out.println("You craft Materials to use for construction on Mars!");
+                    starship.removeItem("Bucket of Lava");
+                    starship.addItem("Materials");
+                }
+                else {
+                    System.out.println("You don't have any Lava! This isn't Star Trek! You need matter!");
+                }
+            }
+            else {
+                System.out.println("The forge looks pretty intimating anyways... ");
+            }
+        }
+        else if (interactable == Tile.MATERIALS){
+            if (yesNo){
+                if (starship.getInventory().contains("Materials")) {
+                    System.out.println("You, Elon, and the robot army from your ship begin building!");
+                    starship.removeItem("Materials");
+                    return true;
+                }
+                else {
+                    System.out.println("You don't have the materials!");
+                }
+            }
+            else {
+                System.out.println("Really... Guess you'll die from exposure...");
+                output.setHitsMessage();
+                System.out.println("You take 1 damage, because whhhhhhyyyy");
+                starship.takenDamage(1);
+            }
+        }
+        else if (interactable == Tile.WATERGEN){
+            if (yesNo){
+                if (starship.getInventory().contains("Elon Musk")) {
+                    System.out.println("Elon gets cranking on constructing the pipes.");
+                    System.out.println("You hear the robots outside chipping at the ice.");
+                    starship.removeItem("Elon Musk");
+                    return true;
+
+                }
+                else {
+                    System.out.println("You don't have the Forge Key!");
+                }
+            }
+            else {
+                System.out.println("Dehydration is a serious thing.");
+                output.setHitsMessage();
+                System.out.println("You take 1 damage from thirst.");
+                starship.takenDamage(1);
+
+            }
+        }
+        else if (interactable == Tile.STOCKPILE){
+            if (yesNo){
+                if (starship.getInventory().contains("Food")) {
+                    System.out.println("You begin setting the soil and planting seeds.");
+                    System.out.println("Eventually, the trees start to flourish.");
+                    starship.removeItem("Food");
+                    return true;
+                }
+                else {
+                    System.out.println("You don't have Food!");
+                }
+            }
+            else {
+                System.out.println("Your stomach rumbles... Elon gives you a scared glance...");
+                output.setHitsMessage();
+                System.out.println("You take 1 damage from hunger... No cannibalism please!");
+                starship.takenDamage(1);
+            }
+        }
+
+        else if (interactable == Tile.RELIC){
+            if (yesNo){
+                if (starship.getInventory().contains("Flag")) {
+                    System.out.println("You gently set the flag into the flagstand...");
+                    System.out.println("MARS COLONY CLAIMED IN THE NAME OF 'MURICA!");
+                    System.out.println("Astronauts and random Cafe patrons show up out of nowhere!");
+                    System.out.println("YOU WIN!");
+                    starship.removeItem("Flag");
+                    return true;
+                }
+                else {
+                    System.out.println("You don't have the Flag! Must have left it on the Moon!");
+                }
+            }
+            else {
+                System.out.println("YOU DENY MANIFEST DESTINY?!?!?!");
+                output.setHitsMessage();
+                System.out.println("You take 10 damage from an unknown source. Rest in peace.");
+                starship.takenDamage(10);
             }
         }
 

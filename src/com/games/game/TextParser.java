@@ -3,6 +3,8 @@ package com.games.game;
 import com.games.pieces.Player;
 import com.games.pieces.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class TextParser {
@@ -49,6 +51,10 @@ public class TextParser {
         } catch (ArrayIndexOutOfBoundsException e) {
             hud.prompt1("ArrayOutOfBoundsException: ");
             hud.prompt2(e.getMessage() + ". Try again.");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
@@ -91,7 +97,7 @@ public class TextParser {
         }
     }
 
-    public void asteroidCollision(String input, ArrayList<Asteroid> asteroids, HUD hud, Starship starship) {
+    public void asteroidCollision(String input, ArrayList<Asteroid> asteroids, HUD hud, Starship starship) throws FileNotFoundException, LineUnavailableException {
         String astLocation = asteroids.get(0).getPosition();
         // check if user's input
         if (input.equals(astLocation)) {
@@ -114,7 +120,7 @@ public class TextParser {
         }
     }
 
-    public void alienFighting(String input, ArrayList<Alien> aliens, Player player, HUD hud, Starship starship){
+    public void alienFighting(String input, ArrayList<Alien> aliens, Player player, HUD hud, Starship starship) throws FileNotFoundException, LineUnavailableException {
         String alienLocation = aliens.get(0).getPosition();
         if (input.equals(alienLocation) && player.playerHasWeapon()) {
             aliens.get(0).setHealth(aliens.get(0).getHealth() - 50);
