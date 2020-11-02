@@ -21,10 +21,10 @@ public class Sound {
 
     public Sound() {
         panel = getSoundSliderPanel();
-        button = new JButton();
+        /*button = new JButton();
         button.setText("Mute Background Music");
         panel.add(button, BorderLayout.LINE_END);
-        button.addActionListener(e -> setBackgroundSound(""));
+        button.addActionListener(e -> setBackgroundSound(""));*/
     }
 
     public void playSound(String filepath) throws FileNotFoundException, LineUnavailableException, FileNotFoundException {
