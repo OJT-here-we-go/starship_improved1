@@ -484,9 +484,10 @@ public class Game {
     // this can be put in the main to load windows on same process rather than what first group did
     public void run() throws IOException, LineUnavailableException {
         isRunning = true;
+        sound.playSound(sound.getBackgroundSound());
 //        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
 //        float volumeLevel = sound.getSlider().getVolumeInt();
-        BackgroundMusic.playBGM(sound.getSlider()); //CALL BGM WITH DEFAULT
+        //BackgroundMusic.playBGM(sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
             long startTime = System.nanoTime();

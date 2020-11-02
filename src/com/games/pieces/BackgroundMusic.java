@@ -1,38 +1,23 @@
+/*
 package com.games.pieces;
 
 import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;  //
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.JOptionPane;
 
 
     public class BackgroundMusic {
-        public static File musicPath = new File( "./Sound/StarshipBGM16.wav");
-        public static Clip clip;
-        public static AudioInputStream audioIn;
 
-        static {
-            if (musicPath.exists()) {
-                try {
-                    audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    clip = AudioSystem.getClip();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        public static void playBGM(VolumeSlider slider) throws IOException, LineUnavailableException {  //CURRENTLY STATIC (no object necessary to play music)
+        public static void playBGM(String musicSource, SoundControl slider) {  //CURRENTLY STATIC (no object necessary to play music)
             // InputStream BGM;
             try {
-//                File musicPath = new File(filepath);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
-
+                File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
+                if(musicPath.exists()){
+                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
+                    Clip clip = AudioSystem.getClip();
                     clip.open(audioIn); //Open and Load passed in file
                     FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                     //float volumeNum = slider.getVolumeLevel();
@@ -54,8 +39,10 @@ import javax.swing.JOptionPane;
 //
 //                JOptionPane.showMessageDialog(null, "Press OK to stop music"); //INTERRUPTS AUTOMATIC CLIP THREAD DEATH and allows user to control Sound Stop
 
+                } else {
+                    System.out.printf("\nERROR!! Music file \"%s\" not found\n", musicPath);
                 }
-
+            }
             catch(Exception ex) {
                 ex.printStackTrace();
             }
@@ -82,3 +69,4 @@ import javax.swing.JOptionPane;
 }
 
 
+*/
