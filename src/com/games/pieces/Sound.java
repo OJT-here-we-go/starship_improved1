@@ -13,8 +13,8 @@ public class Sound {
     VolumeSlider slider = new VolumeSlider();
     public void playSound() throws FileNotFoundException, LineUnavailableException {
         try {
-            File inputFile = new File(String.valueOf(Path.of("Sound","beep-07.wav")));
-            File BGMFile = new File(String.valueOf(Path.of("Sound", "./Sound/StarshipBGM16.wav")));
+            File inputFile = new File(String.valueOf(Path.of("src/sound","beep-07.wav")));
+            File BGMFile = new File(String.valueOf(Path.of("src/sound", "StarshipBGM16.wav")));
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);

@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 
     public class BackgroundMusic {
-        public static File musicPath = new File( "./Sound/StarshipBGM16.wav");
+        public static File musicPath = new File( "./src/sound/StarshipBGM16.wav");
         public static Clip clip;
         public static AudioInputStream audioIn;
 

@@ -39,7 +39,7 @@ public class Planet {
 
         tiles = new ArrayList<ArrayList<Tile>>();
 
-        ArrayList<String> strs = FileReader.readMapFile(String.valueOf(Path.of("Data",variationName + ".txt")));
+        ArrayList<String> strs = FileReader.readMapFile(String.valueOf(Path.of("src/maps",variationName + ".txt")));
 
         //"src/"
         //+planetNumber+".txt");
