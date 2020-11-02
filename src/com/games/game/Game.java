@@ -6,7 +6,7 @@ import com.games.pieces.*;
 //import com.games.pieces.Player;
 //import com.games.pieces.Starship;
 
-import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.Random;
@@ -50,6 +51,7 @@ public class Game {
     private static final int mapHeight = 100;
     private int framesPerSecond = 60;
     private int timePerLoop = 1000000000 / framesPerSecond;
+    private boolean isPlaying = false;
 
     //private static final int HEIGHT = 10;
 //   private static final int WIDTH = 10;
@@ -162,15 +164,19 @@ public class Game {
         JFrame menu = new JFrame();
         JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
         JButton quitButton = new JButton("Quit Game");
+        JButton muteButton = new JButton("Mute Music");
         playButton.setPreferredSize(new Dimension(100, 80));
         quitButton.setSize(new Dimension(60, 60));
         playButton.setContentAreaFilled(false);
         playButton.setBorderPainted(false);
         playButton.setActionCommand("play");
         quitButton.setActionCommand("quit");
+        muteButton.setActionCommand("mute");
+
         menu.setLayout(new BorderLayout());
         menu.add(playButton, "Center");
-        menu.add(quitButton, "Last");
+        //menu.add(quitButton, "Last");
+        menu.add(muteButton, BorderLayout.SOUTH );
         menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
@@ -179,6 +185,16 @@ public class Game {
 //        this.parentWindow.getContentPane().add(this.gameArea.getAsciiPanel(), BorderLayout.PAGE_START);
 //        this.parentWindow.getContentPane().add(this.hud.getHudPanel(), BorderLayout.LINE_END);
 //        this.parentWindow.getContentPane().add(this.output.getOutputPanel(), "South");
+        muteButton.addActionListener((e -> {
+            if(e.getActionCommand().equals("mute")){
+                isPlaying = false;
+                System.out.println("no music should play");
+            } else {
+                isPlaying = true;
+                System.out.println("music is playing");
+            }
+        }));
+
         playButton.addActionListener((e) -> {
             if (e.getActionCommand().equals("play")) {
                 menu.setVisible(false);
@@ -211,6 +227,45 @@ public class Game {
 
         this.play(this.player1, this.planets, this.asteroids, this.aliens, this.starship,
                 this.level1);
+    }
+
+    public static void playBGM(String musicSource, VolumeSlider slider) {  //CURRENTLY STATIC (no object necessary to play music)
+        // InputStream BGM;
+        try {
+            File musicPath = new File(musicSource);  //TO BE DYNAMICALLY SET BY CURRENT PLANET
+            if(musicPath.exists()){
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn); //Open and Load passed in file
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                //float volumeNum = slider.getVolumeLevel();
+                gainControl.setValue(slider.getVolumeInt()/10-2); //slider.getVolumeLevel()-50  -80-6.026
+                clip.start(); //Play file from beginning
+                clip.loop(Clip.LOOP_CONTINUOUSLY);  //Loop until "OK" click
+
+                //TODO PLAY PAUSE VOLUME
+
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to pause");
+//                long clipTimePosition = clip.getMicrosecondPosition();
+//                clip.stop(); //Stop clip and save TimePosition
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to resume");
+//                clip.setMicrosecondPosition(clipTimePosition);
+//                clip.start(); //Resume clip from Time Position
+//                clip.loop(Clip.LOOP_CONTINUOUSLY); //Resume Loop
+//
+//                JOptionPane.showMessageDialog(null, "Press OK to stop music"); //INTERRUPTS AUTOMATIC CLIP THREAD DEATH and allows user to control Sound Stop
+
+            } else {
+                System.out.printf("\nERROR!! Music file \"%s\" not found\n", musicPath);
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+
     }
 
     public void play(Player player, ArrayList<Planet> planets, ArrayList<Asteroid> asteroids, ArrayList<Alien> aliens, Starship starship, Level level) throws InterruptedException, FileNotFoundException, LineUnavailableException {
