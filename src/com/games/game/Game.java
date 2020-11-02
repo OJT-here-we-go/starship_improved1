@@ -205,7 +205,7 @@ public class Game {
                 } catch (LineUnavailableException lineUnavailableException) {
                     lineUnavailableException.printStackTrace();
                 }
-                System.out.println("no music should play");
+                //System.out.println("no music should play");
             } else {
                 isPlaying = true;
                 System.out.println("music is playing");
