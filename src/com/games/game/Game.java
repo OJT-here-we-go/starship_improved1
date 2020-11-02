@@ -179,6 +179,7 @@ public class Game {
         menu.add(playButton, "Center");
         menu.add(quitButton, "Last");
         menu.add(sound.getSoundSliderPanel(), BorderLayout.NORTH);
+//        menu.add(BackgroundMusic.bgmSlider.getSliderPanel());
         menu.setLocationRelativeTo(null);
         menu.setSize(new Dimension(825, 650));
 
@@ -484,6 +485,7 @@ public class Game {
     public void run() throws IOException, LineUnavailableException {
         isRunning = true;
 //        String filepath = "./Sound/StarshipBGM16.wav"; //LOAD DEFAULT BGM
+//        float volumeLevel = sound.getSlider().getVolumeInt();
         BackgroundMusic.playBGM(sound.getSlider()); //CALL BGM WITH DEFAULT
 
         while(isRunning) {
