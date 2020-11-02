@@ -58,6 +58,7 @@ public class SoundControl {
             volumeLevel = volSlider.getValue();
             String stringValue = Integer.toString(volumeLevel);
             label.setText(stringValue);
+//            BackgroundMusic.playBGM();
         }
     }
 
