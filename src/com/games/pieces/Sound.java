@@ -15,7 +15,7 @@ public class Sound {
 
     // Control sound volume using a JPanel slider that has been passed from the SoundControl class
     private Clip audioClip;
-    private String backgroundSound = "StarshipBGM16.wav";
+    private String backgroundSound = "StarshipBGM16.wav"; // all sound files should be put in the sound folder
     private String crashSound = "beep-07.wav";
     SoundControl slider = new SoundControl();
 
