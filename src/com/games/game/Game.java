@@ -170,7 +170,9 @@ public class Game {
 //        this.parentWindow.setTitle("Starship Game");
 //        this.parentWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFrame menu = new JFrame();
-        JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
+//        JButton playButton = new JButton(new ImageIcon("src/images/Starship.png"));
+        JButton playButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("Starship.png")));
+
         JButton quitButton = new JButton("Quit Game");
         JButton BGMButton = new JButton("Play Background Music");
         playButton.setPreferredSize(new Dimension(100, 80));

@@ -3,7 +3,6 @@ package com.games.pieces;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.*;
-import java.nio.file.Path;
 
 /*The sound class is used to implement experience allowing the user to hear sound when
 the starship collides with a foreign object*/
@@ -11,11 +10,23 @@ public class Sound {
     // Control sound volume using a JPanel slider that has been passed from the VolumeSlider class
     Clip audioClip;
     VolumeSlider slider = new VolumeSlider();
+
     public void playSound() throws FileNotFoundException, LineUnavailableException {
         try {
-            File inputFile = new File(String.valueOf(Path.of("src/sound","beep-07.wav")));
-            File BGMFile = new File(String.valueOf(Path.of("src/sound", "StarshipBGM16.wav")));
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
+
+            String resource = "beep-07.wav";
+            InputStream inputFile = getClass().getClassLoader().getResourceAsStream(resource);
+//            if (inputFile == null) {
+//                // this is how we load file within editor
+//                inputFile = Sound.class.getClassLoader().getResourceAsStream(resource);
+//            }
+            //for regular
+//            File BGMFile = new File(String.valueOf(Path.of("src" ,"sound/StarshipBGM16.wav")));
+
+            //for jar
+//            InputStream BGMFile = getClass().getResourceAsStream("sound/beep-07.wav");
+            InputStream bufferedIn = new BufferedInputStream(inputFile);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bufferedIn);
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);
             setVolume(slider, audioClip);
@@ -28,8 +39,23 @@ public class Sound {
     public Sound playBGMSound() throws FileNotFoundException, LineUnavailableException {
         try {
 
-            File BGMFile = new File(String.valueOf(Path.of("Sound", "./StarshipBGM16.wav")));
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(BGMFile);
+//            String resource = "com/games/pieces/StarshipBGM16.wav";
+            String resource = "StarshipBGM16.wav";
+            InputStream inputFile = getClass().getClassLoader().getResourceAsStream(resource);
+//            if (inputFile == null) {
+//                // this is how we load file within editor
+//                inputFile = Sound.class.getClassLoader().getResourceAsStream(resource);
+//            }
+            //for regular
+//            File BGMFile = new File(String.valueOf(Path.of("src" ,"sound/StarshipBGM16.wav")));
+
+            //for jar
+//            InputStream BGMFile = getClass().getResourceAsStream("sound/beep-07.wav");
+            InputStream bufferedIn = new BufferedInputStream(inputFile);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bufferedIn);
+
+
+
             audioClip = AudioSystem.getClip();
             audioClip.open(audioInputStream);
             setVolume(slider, audioClip);

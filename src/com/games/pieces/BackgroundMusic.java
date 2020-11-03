@@ -1,34 +1,43 @@
 package com.games.pieces;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.sound.sampled.*;
-import javax.swing.JOptionPane;
 
 
-    public class BackgroundMusic {
-        public static File musicPath = new File( "./src/sound/StarshipBGM16.wav");
+public class BackgroundMusic {
+//        public static File musicPath = new File("/StarshipBGM16.wav");
         public static Clip clip;
         public static AudioInputStream audioIn;
 
         static {
-            if (musicPath.exists()) {
-                try {
-                    audioIn = AudioSystem.getAudioInputStream(musicPath); //Locally Rename any passed in file in musicPath to audoIN
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    clip = AudioSystem.getClip();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
+            String resource = "StarshipBGM16.wav";
+            InputStream inputFile = BackgroundMusic.class.getClassLoader().getResourceAsStream(resource);
+//            if (inputFile == null) {
+//                // this is how we load file within editor
+//                inputFile = Sound.class.getClassLoader().getResourceAsStream(resource);
+//            }
+            //for regular
+//            File BGMFile = new File(String.valueOf(Path.of("src" ,"sound/StarshipBGM16.wav")));
+
+            //for jar
+//            InputStream BGMFile = getClass().getResourceAsStream("sound/beep-07.wav");
+            InputStream bufferedIn = new BufferedInputStream(inputFile);
+            try {
+                audioIn = AudioSystem.getAudioInputStream(bufferedIn);
+                clip = AudioSystem.getClip();
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
             }
         }
 
-        public static void stopBGM() {
+            public static void stopBGM() {
             clip.stop();
         }
         public static void playBGM() throws IOException, LineUnavailableException {  //CURRENTLY STATIC (no object necessary to play music)

@@ -30,7 +30,7 @@ public class MapPanelGenerator extends JPanel {
                 for (int j = 0; j < starship.getCurrentLocation().getWidth(); j++) {
 
                     if (starship.getCurrentLocation().getTileChar(j, i) == '@') {
-                        g.setColor(Color.MAGENTA);
+                        g.setColor(Color.CYAN);
                         g.drawString("" + starship.getCurrentLocation().getTileChar(j, i), x, y);
                         starship.setPlanetXPos(j);
                         starship.setPlanetYPos(i);

@@ -38,8 +38,8 @@ public class Planet {
         this.variationName = name + variation;
 
         tiles = new ArrayList<ArrayList<Tile>>();
-
-        ArrayList<String> strs = FileReader.readMapFile(String.valueOf(Path.of("src/maps",variationName + ".txt")));
+//String.valueOf(Path.of("src",
+        ArrayList<String> strs = FileReader.readMapFile(variationName + ".txt");
 
         //"src/"
         //+planetNumber+".txt");

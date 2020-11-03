@@ -1,8 +1,6 @@
 package com.games.client;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -14,11 +12,12 @@ public class FileReader {
     public static ArrayList<String> readMapFile(String filename) {
 
         ArrayList<String> strings = new ArrayList<String>();
-        try{
-            reader = new BufferedReader(new java.io.FileReader(filename));
-        }catch (FileNotFoundException e) {
-            System.out.println(filename+" not found!");
-        }
+        //            URL url = FileReader.class.getResource(filename);
+        //for jar
+//            InputStream inputFile = this.getClass().getClassLoader().getResourceAsStream("/maps/"+filename);
+        reader = new BufferedReader(new InputStreamReader(
+                FileReader.class.getClassLoader().getResourceAsStream(filename)));
+//            reader = new BufferedReader();
         try {
             String str = reader.readLine();
             strings.add(str);

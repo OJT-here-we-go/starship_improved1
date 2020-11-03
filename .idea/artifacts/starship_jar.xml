@@ -4,7 +4,6 @@
     <root id="archive" name="starship.jar">
       <element id="module-output" name="starship" />
       <element id="extracted-dir" path="$PROJECT_DIR$/ascii panel/asciiPanel.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/openjfx-11.0.2_windows-x64_bin-sdk.zip" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.13/junit-4.13.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" path-in-jar="/" />
     </root>
